@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#24B924</color>
+    <color name="colorPrimaryDark">#24B986</color>
+    <color name="colorAccent">#ACE8E2</color>
+    <color name="btn_login_color">#378E1E</color>
+    <color name="text_tablayout_color">#655D5D</color>
+    <color name="tablayout_backgound">#FFF</color>
+    <color name="textSelected_tablayout">#e66d6d</color>
+</resources>

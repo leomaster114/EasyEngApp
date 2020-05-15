@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+<!--    <item android:id="@+id/btn_back_arrow"-->
+<!--        android:title="backArrow"-->
+<!--        android:icon="@drawable/back_arrow"-->
+<!--        app:showAsAction="always"/>-->
+    <item
+        android:id="@+id/App_info"
+        android:title="@string/app_info" />
+    <item
+        android:id="@+id/App_setup"
+        android:title="@string/set_up" />
+</menu>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Fragment.ForgetAccountFragment">
+    <LinearLayout
+        android:orientation="vertical"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <EditText
+            android:id="@+id/edt_email"
+            android:gravity="center"
+            android:hint="@string/hint_email_login"
+            android:background="@drawable/edit_text_login_info"
+            android:layout_width="match_parent"
+            android:layout_marginLeft="@dimen/editText_marginLeft"
+            android:layout_marginRight="@dimen/editText_marginRight"
+            android:layout_height="wrap_content"/>
+        <TextView
+            android:id="@+id/tv_send_again"
+            android:text="Gửi lại"
+            android:textStyle="bold"
+            android:textColor="#000"
+            android:textSize="24sp"
+            android:layout_marginTop="@dimen/editText_marginTop"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <Button
+            android:id="@+id/btn_receive_new_pass"
+            android:background="@drawable/button_login"
+            android:text="@string/text_new_pass"
+            android:textColor="#FFFFFF"
+            android:textStyle="bold"
+            android:textAllCaps="false"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:layout_marginTop="@dimen/editText_marginTop"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+    </LinearLayout>
+
+</FrameLayout>
