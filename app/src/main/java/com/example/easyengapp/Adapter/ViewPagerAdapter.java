@@ -67,4 +67,5 @@ public class ViewPagerAdapter extends FragmentStatePagerAdapter {
     public static Fragment getFragment(int key){
         return map.get(key);
     }
+
 }

@@ -6,13 +6,196 @@
     tools:context=".Fragment.ProfileFagment">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:gravity="center"
-        android:textStyle="bold"
-        android:textColor="#000"
-        android:textSize="24sp"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Đây là trang hồ sơ cá nhân" />
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tvProfileTitle"
+                android:gravity="center"
+                android:layout_marginTop="20dp"
+                android:textStyle="bold"
+                android:textColor="#000"
+                android:textSize="28sp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Hồ sơ của bạn" />
+
+            <ImageView
+                android:id="@+id/imgViewAvatar"
+                android:background="@drawable/circle"
+                android:layout_gravity="center"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_marginTop="10dp"
+                android:scaleType="fitCenter"
+                android:paddingTop="20dp"
+                android:src="@drawable/doulingo" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp">
+
+                <ImageButton
+                    android:id="@+id/btnFolder"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="150dp"
+                    android:src="@drawable/folder_icon" />
+
+                <ImageButton
+                    android:id="@+id/btnCamera"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/camera_icon" />
+
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/btnChangeAvatar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="#FFF"
+                android:gravity="center"
+                android:text="Thay ảnh đại diện"
+                android:textColor="#8D2BAC"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tvName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Tên"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                android:textColor="#000"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="60dp"/>
+
+            <EditText
+                android:id="@+id/edtName"
+                android:background="@drawable/custom_edit_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="24sp"
+                android:hint="enter your name"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="60dp"
+                android:layout_marginRight="60dp"/>
+
+            <TextView
+                android:id="@+id/tvEmail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Email"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                android:textColor="#000"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="60dp"/>
+
+            <EditText
+                android:id="@+id/edtEmail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="24sp"
+                android:hint="enter your email"
+                android:background="@drawable/custom_edit_text"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="60dp"
+                android:layout_marginRight="60dp"/>
+
+            <TextView
+                android:id="@+id/tvPassword"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Mật khẩu"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                android:textColor="#000"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="60dp"/>
+
+            <EditText
+                android:id="@+id/edtPassword"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="24sp"
+                android:inputType="textPassword"
+                android:hint="enter your password"
+                android:background="@drawable/custom_edit_text"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="60dp"
+                android:layout_marginRight="60dp"/>
+
+            <Button
+                android:id="@+id/btnShareResult"
+                android:layout_gravity="center"
+                android:layout_width="300dp"
+                android:layout_height="60dp"
+                android:background="@drawable/button_login"
+                android:layout_marginTop="30dp"
+                android:text="Chia sẻ kết quả"
+                android:textStyle="bold"
+                android:textSize="26sp"
+                android:textColor="#FFF"/>
+
+            <Button
+                android:id="@+id/btnLogout"
+                android:layout_gravity="center"
+                android:layout_width="300dp"
+                android:layout_height="60dp"
+                android:background="@drawable/button_login"
+                android:layout_marginTop="20dp"
+                android:text="Đăng xuất"
+                android:textStyle="bold"
+                android:textSize="26sp"
+                android:textColor="#FFF"/>
+
+            <TextView
+                android:id="@+id/tvNotifyTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Thông báo"
+                android:textSize="26sp"
+                android:textStyle="bold"
+                android:textColor="#000"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="20dp"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tv"
+                    android:layout_weight="8"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="0dp"
+                    android:background="@drawable/custom_edit_text"
+                    android:text="Thông báo luyện tập"
+                    android:textSize="24sp" />
+
+                <Switch
+                    android:layout_weight="2"
+                    android:background="#AB2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp"/>
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
 
 </FrameLayout>
