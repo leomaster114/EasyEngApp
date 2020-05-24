@@ -17,25 +17,24 @@
 
             <TextView
                 android:id="@+id/tvProfileTitle"
-                android:gravity="center"
-                android:layout_marginTop="20dp"
-                android:textStyle="bold"
-                android:textColor="#000"
-                android:textSize="28sp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Hồ sơ của bạn" />
+                android:layout_marginTop="20dp"
+                android:gravity="center"
+                android:text="Hồ sơ của bạn"
+                android:textColor="#000"
+                android:textSize="28sp"
+                android:textStyle="bold" />
 
-            <ImageView
+            <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
                 android:id="@+id/imgViewAvatar"
-                android:background="@drawable/circle"
-                android:layout_gravity="center"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
+                android:layout_gravity="center"
                 android:layout_marginTop="10dp"
-                android:scaleType="fitCenter"
-                android:paddingTop="20dp"
-                android:src="@drawable/doulingo" />
+                android:src="@drawable/doulingo"
+                app:civ_border_color="#C5B20B"
+                app:civ_border_width="5dp" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -64,7 +63,7 @@
                 android:layout_gravity="center"
                 android:background="#FFF"
                 android:gravity="center"
-                android:text="Thay ảnh đại diện"
+                android:text="Lưu ảnh đại diện"
                 android:textColor="#8D2BAC"
                 android:textSize="20sp"
                 android:textStyle="bold" />
@@ -73,126 +72,161 @@
                 android:id="@+id/tvName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Tên"
-                android:textSize="24sp"
-                android:textStyle="bold"
-                android:textColor="#000"
+                android:layout_marginLeft="60dp"
                 android:layout_marginTop="10dp"
-                android:layout_marginLeft="60dp"/>
+                android:text="Tên"
+                android:textColor="#000"
+                android:textSize="24sp"
+                android:textStyle="bold" />
 
             <EditText
                 android:id="@+id/edtName"
-                android:background="@drawable/custom_edit_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="24sp"
-                android:hint="enter your name"
-                android:layout_marginTop="10dp"
                 android:layout_marginLeft="60dp"
-                android:layout_marginRight="60dp"/>
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="60dp"
+                android:background="@drawable/custom_edit_text"
+                android:hint="enter your name"
+                android:textSize="24sp" />
 
             <TextView
                 android:id="@+id/tvEmail"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Email"
-                android:textSize="24sp"
-                android:textStyle="bold"
-                android:textColor="#000"
+                android:layout_marginLeft="60dp"
                 android:layout_marginTop="10dp"
-                android:layout_marginLeft="60dp"/>
+                android:text="Email"
+                android:textColor="#000"
+                android:textSize="24sp"
+                android:textStyle="bold" />
 
             <EditText
                 android:id="@+id/edtEmail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="24sp"
-                android:hint="enter your email"
-                android:background="@drawable/custom_edit_text"
-                android:layout_marginTop="10dp"
                 android:layout_marginLeft="60dp"
-                android:layout_marginRight="60dp"/>
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="60dp"
+                android:background="@drawable/custom_edit_text"
+                android:hint="enter your email"
+                android:textSize="24sp" />
 
             <TextView
                 android:id="@+id/tvPassword"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Mật khẩu"
-                android:textSize="24sp"
-                android:textStyle="bold"
-                android:textColor="#000"
+                android:layout_marginLeft="60dp"
                 android:layout_marginTop="10dp"
-                android:layout_marginLeft="60dp"/>
+                android:text="Mật khẩu"
+                android:textColor="#000"
+                android:textSize="24sp"
+                android:textStyle="bold" />
 
             <EditText
                 android:id="@+id/edtPassword"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="24sp"
-                android:inputType="textPassword"
-                android:hint="enter your password"
-                android:background="@drawable/custom_edit_text"
-                android:layout_marginTop="10dp"
                 android:layout_marginLeft="60dp"
-                android:layout_marginRight="60dp"/>
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="60dp"
+                android:background="@drawable/custom_edit_text"
+                android:hint="enter your password"
+                android:inputType="textPassword"
+                android:textSize="24sp" />
 
             <Button
                 android:id="@+id/btnShareResult"
-                android:layout_gravity="center"
                 android:layout_width="300dp"
                 android:layout_height="60dp"
-                android:background="@drawable/button_login"
+                android:layout_gravity="center"
                 android:layout_marginTop="30dp"
+                android:background="@drawable/button_login"
                 android:text="Chia sẻ kết quả"
-                android:textStyle="bold"
+                android:textColor="#FFF"
                 android:textSize="26sp"
-                android:textColor="#FFF"/>
+                android:textStyle="bold" />
 
             <Button
                 android:id="@+id/btnLogout"
-                android:layout_gravity="center"
                 android:layout_width="300dp"
                 android:layout_height="60dp"
-                android:background="@drawable/button_login"
+                android:layout_gravity="center"
                 android:layout_marginTop="20dp"
+                android:background="@drawable/button_login"
                 android:text="Đăng xuất"
-                android:textStyle="bold"
+                android:textColor="#FFF"
                 android:textSize="26sp"
-                android:textColor="#FFF"/>
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/tvNotifyTitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Thông báo"
-                android:textSize="26sp"
-                android:textStyle="bold"
-                android:textColor="#000"
+                android:layout_marginLeft="20dp"
                 android:layout_marginTop="10dp"
-                android:layout_marginLeft="20dp"/>
+                android:text="Thông báo"
+                android:textColor="#000"
+                android:textSize="26sp"
+                android:textStyle="bold" />
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:layout_height="wrap_content">
 
                 <TextView
-                    android:id="@+id/tv"
-                    android:layout_weight="8"
-                    android:layout_width="0dp"
+                    android:id="@+id/tvRemind"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginRight="0dp"
-                    android:background="@drawable/custom_edit_text"
+                    android:layout_marginLeft="80dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginTop="5dp"
                     android:text="Thông báo luyện tập"
-                    android:textSize="24sp" />
+                    android:textColor="@color/btn_login_color"
+                    android:textSize="22sp"
+                    android:textStyle="bold" />
 
                 <Switch
-                    android:layout_weight="2"
-                    android:background="#AB2"
+                    android:id="@+id/remindSwitch"
                     android:layout_width="wrap_content"
-                    android:layout_height="50dp"/>
+                    android:layout_height="wrap_content"
+                    android:switchMinWidth="56dp"
+                    android:layout_marginTop="5dp"
+                    android:textOff="OFF"
+                    android:textOn="ON"
+                    android:checked="true"
+                    android:textColor="@color/btn_login_color"
+                    android:thumbTint="@color/btn_login_color"
+                    android:trackTint="@color/colorPrimaryDark" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/tvRemindTimeTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="80dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="15dp"
+                    android:text="Thời gian nhắc nhở:"
+                    android:textColor="@color/btn_login_color"
+                    android:textSize="22sp"
+                    android:textStyle="bold" />
+
+                <Button
+                    android:id="@+id/btnRemindTime"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:background="#FFF"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textStyle="italic"
+                    android:textSize="22sp"
+                    android:text="09:00"/>
+
             </LinearLayout>
 
         </LinearLayout>
