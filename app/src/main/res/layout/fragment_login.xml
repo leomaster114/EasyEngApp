@@ -19,8 +19,7 @@
                 android:id="@+id/edt_username"
                 android:hint="@string/hint_email_login"
                 android:gravity="center"
-                android:textSize="24sp"
-                android:background="@drawable/edit_text_login_info"
+                android:textSize="16sp"
                 android:layout_width="match_parent"
                 android:layout_marginTop="@dimen/editText_marginTop"
                 android:layout_marginLeft="@dimen/editText_marginLeft"
@@ -31,8 +30,7 @@
                 android:hint="@string/hint_password_login"
                 android:inputType="textPassword"
                 android:gravity="center"
-                android:textSize="24sp"
-                android:background="@drawable/edit_text_login_info"
+                android:textSize="16sp"
                 android:layout_width="match_parent"
                 android:layout_marginTop="@dimen/editText_marginTop"
                 android:layout_marginLeft="@dimen/editText_marginLeft"
@@ -51,15 +49,32 @@
                 android:background="@drawable/button_login"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
-            <TextView
-                android:id="@+id/tv_forget_acc"
-                android:text="@string/text_forget_acc"
-                android:textSize="24sp"
-                android:textColor="#000000"
-                android:layout_marginTop="@dimen/editText_marginTop"
-                android:layout_gravity="center"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+           <RelativeLayout
+               android:gravity="center"
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content">
+               <TextView
+                   android:layout_marginRight="10dp"
+                   android:id="@+id/tv_forget_acc"
+                   android:text="@string/text_forget_acc"
+                   android:textSize="16sp"
+                   android:textColor="#3F51B5"
+                   android:layout_marginTop="@dimen/editText_marginTop"
+                   android:layout_gravity="center"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"/>
+               <TextView
+                   android:layout_marginLeft="10dp"
+                   android:id="@+id/tv_donthave_acc"
+                   android:layout_toRightOf="@id/tv_forget_acc"
+                   android:text="Chưa có tài khoản?"
+                   android:textSize="16sp"
+                   android:textColor="#3F51B5"
+                   android:layout_marginTop="@dimen/editText_marginTop"
+                   android:layout_gravity="center"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"/>
+           </RelativeLayout>
         </LinearLayout>
 
     </FrameLayout>

@@ -4,23 +4,25 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.example.easyengapp.Adapter.ViewPagerAdapter;
-import com.example.easyengapp.Fragment.AchivementFragment;
+import com.example.easyengapp.Fragment.DictionaryFragment;
 import com.example.easyengapp.Fragment.PracticeFragment;
 import com.example.easyengapp.Fragment.ProfileFagment;
 import com.example.easyengapp.R;
+import com.example.easyengapp.storage.SharePrefManager;
 import com.google.android.material.tabs.TabLayout;
 
 public class MainActivity extends AppCompatActivity {
     ViewPager viewPager;
     TabLayout tabLayout;
     public PracticeFragment practiceFragment;
-    public AchivementFragment achivementFragment;
+    public DictionaryFragment dictionaryFragment;
     public ProfileFagment profileFagment;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,7 +34,17 @@ public class MainActivity extends AppCompatActivity {
         tabLayout.setupWithViewPager(viewPager);
         setupTabIcons();
     }
-
+/*
+    @Override
+    public void onStart() {
+        super.onStart();
+        if(!SharePrefManager.getInstance(this).isLoggedIn()){
+            Intent intent = new Intent(this,WelcomeActiviry.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            startActivity(intent);
+        }
+    }
+    */
     private void setupTabIcons() {
         tabLayout.getTabAt(0).setIcon(R.drawable.practice);
         tabLayout.getTabAt(1).setIcon(R.drawable.achive);
@@ -41,11 +53,11 @@ public class MainActivity extends AppCompatActivity {
 
     private void setupViewPager(ViewPager viewPager) {
         practiceFragment = new PracticeFragment();
-        achivementFragment = new AchivementFragment();
+        dictionaryFragment = new DictionaryFragment();
         profileFagment = new ProfileFagment();
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
         adapter.addFragment(practiceFragment,"");
-        adapter.addFragment(achivementFragment,"");
+        adapter.addFragment(dictionaryFragment,"");
         adapter.addFragment(profileFagment,"");
         viewPager.setAdapter(adapter);
     }

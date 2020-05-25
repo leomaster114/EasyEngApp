@@ -2,10 +2,12 @@ package com.example.easyengapp.Fragment;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.util.Patterns;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,17 +17,28 @@ import android.widget.FrameLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.easyengapp.Activity.LoginActivity;
 import com.example.easyengapp.Activity.MainActivity;
+import com.example.easyengapp.Activity.RegisterActivity;
 import com.example.easyengapp.R;
+import com.example.easyengapp.Retrofit.RetrofitClient;
+import com.example.easyengapp.moldel.LoginResponse;
+import com.example.easyengapp.moldel.User;
+import com.example.easyengapp.storage.SharePrefManager;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 /**
  * A simple {@link Fragment} subclass.
  */
 public class LoginFragment extends Fragment implements View.OnClickListener {
     Button btn_login;
-    TextView tv_forgetPass;
+    TextView tv_forgetPass, tv_dont_have_acc;
     EditText edt_username, edt_pass;
     Context context;
+
     public LoginFragment() {
         // Required empty public constructor
     }
@@ -39,43 +52,35 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
         context = getContext();
         btn_login = view.findViewById(R.id.btn_login);
         tv_forgetPass = view.findViewById(R.id.tv_forget_acc);
+        tv_dont_have_acc = view.findViewById(R.id.tv_donthave_acc);
         edt_username = view.findViewById(R.id.edt_username);
         edt_pass = view.findViewById(R.id.edt_password);
 
         btn_login.setOnClickListener(this);
         tv_forgetPass.setOnClickListener(this);
+        tv_dont_have_acc.setOnClickListener(this);
         return view;
     }
+
+//    @Override
+//    public void onStart() {
+//        super.onStart();
+//        if(SharePrefManager.getInstance(context).isLoggedIn()){
+//            Intent intent = new Intent(context,MainActivity.class);
+//            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK);
+//            startActivity(intent);
+//        }
+//    }
 
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btn_login: {// click vào đăng nhập
-                String email = edt_username.getText().toString();
-                String pass = edt_pass.getText().toString();
-                if(email.equals("")||pass.equals("")) Toast.makeText(context,"Nhập đầy đủ email và password",Toast.LENGTH_LONG).show();
-                else{
-                    // validate email, password
-                    Toast.makeText(context, "email: " + edt_username.getText() + "\npassword: " + edt_pass.getText(), Toast.LENGTH_LONG).show();
-                    if(email.equals("cloneforfun.ptit@gmail.com")){
-                        if(pass.equals("12345")){
-                            // dang nhap thanh cong
-                            Toast.makeText(context, "Đăng nhập thành công", Toast.LENGTH_LONG).show();
-                            Intent intent = new Intent(context, MainActivity.class);
-                            startActivity(intent);
-                        }else{
-                            Toast.makeText(context, "Mật khẩu sai", Toast.LENGTH_LONG).show();
-                        }
-                    }else{
-                        Toast.makeText(context, "email sai", Toast.LENGTH_LONG).show();
-                    }
-                }
-
-
+                UserLogin();
                 break;
             }
             case R.id.tv_forget_acc: {//click vào quên mật khẩu
-                Toast.makeText(context,"Quên mật khẩu",Toast.LENGTH_LONG).show();
+                Toast.makeText(context, "Quên mật khẩu", Toast.LENGTH_LONG).show();
                 //chuyển sang fragment quên mật khẩu
                 ForgetAccountFragment forgetAccountFragment = new ForgetAccountFragment();
                 FrameLayout frameLayout = getActivity().findViewById(R.id.replaceFragment1);
@@ -87,7 +92,63 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
                         .replace(R.id.replaceFragment2, forgetAccountFragment)
                         .addToBackStack(null)
                         .commit();
+                break;
             }
+            case R.id.tv_donthave_acc:{
+                Intent intent = new Intent(context,RegisterActivity.class);
+                startActivity(intent);
+            }
+
         }
     }
+
+    private void UserLogin() {
+        final String username = edt_username.getText().toString().trim();
+        final String pass = edt_pass.getText().toString().trim();
+        if (username.isEmpty()) {
+            edt_username.setError("Username is required!");
+            edt_username.setTextColor(Color.RED);
+            edt_username.requestFocus();
+            return;
+        }
+        if (pass.isEmpty()) {
+            edt_pass.setError("Password is required");
+            edt_pass.setTextColor(Color.RED);
+            edt_pass.requestFocus();
+            return;
+        }
+        if (pass.length() < 8) {
+            edt_pass.setError("Password should be atleast 6 character");
+            edt_pass.setTextColor(Color.RED);
+            edt_pass.requestFocus();
+            return;
+        }
+        Call<LoginResponse> call = RetrofitClient.getInstance().getApi().LoginUser(username,pass);
+        call.enqueue(new Callback<LoginResponse>() {
+            @Override
+            public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
+                LoginResponse result = response.body();
+                if(result.isStatus()){
+                    Toast.makeText(context,"Đã đăng nhập thành công",Toast.LENGTH_LONG).show();
+                    User user = result.getUser();
+                    SharePrefManager.getInstance(context)
+                            .saveUser(new User(user.getId(),user.getFullname(),username,pass,user.getEmail(),user.getAvatar()));//result.getUser()
+                    Intent intent = new Intent(context, MainActivity.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    startActivity(intent);
+                }else{
+                    edt_username.setError("Incorrect username or password!");
+                    edt_username.setTextColor(Color.RED);
+                    edt_pass.setError("Incorrect username or password!");
+                    edt_pass.setTextColor(Color.RED);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<LoginResponse> call, Throwable t) {
+                Toast.makeText(context,t.getMessage(),Toast.LENGTH_LONG).show();
+            }
+        });
+    }
 }
+

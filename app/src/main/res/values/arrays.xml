@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="subject">
+        <item>Gia Đình</item>
+        <item>Trường học</item>
+        <item>Thể thao</item>
+        <item>Thiên nhiên</item>
+        <item>Du lịch</item>
+        <item>Nhà cửa</item>
+        <item>Xe cộ</item>
+        <item>Con người</item>
+        <item>Khoa học</item>
+        <item>Xã hội</item>
+    </string-array>
+</resources>

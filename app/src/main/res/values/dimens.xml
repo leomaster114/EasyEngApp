@@ -14,8 +14,8 @@
     <!--Login activity-->
     <dimen name="editText_width"></dimen>
     <dimen name="editText_height"></dimen>
-    <dimen name="editText_marginLeft">32dp</dimen>
-    <dimen name="editText_marginRight">32dp</dimen>
+    <dimen name="editText_marginLeft">50dp</dimen>
+    <dimen name="editText_marginRight">50dp</dimen>
     <dimen name="editText_marginTop">30dp</dimen>
 
 </resources>

@@ -32,7 +32,7 @@ public class ViewPagerAdapter extends FragmentStatePagerAdapter {
                 title = "LUYỆN TẬP";
                 break;
             case 1:
-                title = "THÀNH TÍCH";
+                title = "TỪ ĐIỂN";
                 break;
             case 2:
                 title = "HỒ SƠ";

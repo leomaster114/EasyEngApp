@@ -6,13 +6,45 @@
     tools:context=".Fragment.ProfileFagment">
 
     <!-- TODO: Update blank fragment layout -->
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+ <ImageView
+     android:layout_margin="20dp"
+     android:layout_gravity="center_horizontal"
+     android:id="@+id/avatar"
+     android:layout_width="100dp"
+     android:layout_height="100dp"/>
     <TextView
+        android:layout_margin="20dp"
+        android:id="@+id/tv_name"
+        android:layout_gravity="center_horizontal"
         android:gravity="center"
         android:textStyle="bold"
         android:textColor="#000"
         android:textSize="24sp"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:text="Đây là trang hồ sơ cá nhân" />
+    <TextView
+        android:layout_margin="20dp"
+        android:layout_gravity="center_horizontal"
+        android:id="@+id/tv_email"
+        android:gravity="center"
+        android:textStyle="bold"
+        android:textColor="#000"
+        android:textSize="24sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Đây là trang hồ sơ cá nhân" />
+    <Button
+        android:id="@+id/btn_logout"
+        android:layout_gravity="center_horizontal"
+        android:text="Đăng xuất"
+        android:textSize="24dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
 
+    </LinearLayout>
 </FrameLayout>
