@@ -11,4 +11,7 @@
     <item
         android:id="@+id/App_setup"
         android:title="@string/set_up" />
+    <item
+        android:id="@+id/App_feedback"
+        android:title="@string/feed_back" />
 </menu>

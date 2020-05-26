@@ -18,13 +18,20 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Switch;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
+import com.example.easyengapp.Activity.RegisterActivity;
+import com.example.easyengapp.Activity.WelcomeActiviry;
 import com.example.easyengapp.R;
+import com.example.easyengapp.moldel.User;
+import com.example.easyengapp.storage.SharePrefManager;
+import com.google.android.gms.auth.api.signin.GoogleSignInClient;
+import com.squareup.picasso.Picasso;
 
 import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
@@ -39,10 +46,13 @@ import java.util.Calendar;
 
 public class ProfileFagment extends Fragment {
 
-    Button btnChangeAvatar, btnRemindTime;
+    Button btnChangeAvatar, btnRemindTime, btnLogout;
     ImageButton btnCamera, btnFolder;
     ImageView imgViewAvatar;
     Switch remindSwitch;
+    EditText edtName,edtEmail,edtPass;
+    Context mContext;
+    GoogleSignInClient googleSignInClient;
 
     int REQUEST_CODE_CAMERA = 123;
     int REQUEST_CODE_FOLDER = 456;
@@ -57,14 +67,37 @@ public class ProfileFagment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_profile_fagment, container, false);
-
+        mContext = getContext();
         btnChangeAvatar = view.findViewById(R.id.btnChangeAvatar);
         btnCamera = view.findViewById(R.id.btnCamera);
         btnFolder = view.findViewById(R.id.btnFolder);
         btnRemindTime = view.findViewById(R.id.btnRemindTime);
         imgViewAvatar = view.findViewById(R.id.imgViewAvatar);
         remindSwitch = view.findViewById(R.id.remindSwitch);
-
+        btnLogout = view.findViewById(R.id.btnLogout);
+        edtName = view.findViewById(R.id.edtName);
+        edtEmail = view.findViewById(R.id.edtEmail);
+        edtPass = view.findViewById(R.id.edtPassword);
+        //set information to editText
+        User user = SharePrefManager.getInstance(mContext).getUser();
+        edtName.setText(user.getFullname());
+        edtEmail.setText(user.getEmail());
+        edtPass.setText(user.getPassword());
+        Picasso.with(mContext).load(Uri.parse(user.getAvatar())).into(imgViewAvatar);
+        //logout
+        googleSignInClient = RegisterActivity.signInClient;
+        btnLogout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(googleSignInClient!=null){
+                    googleSignInClient.signOut();
+                }
+                SharePrefManager.getInstance(mContext).clear();
+                Intent intent = new Intent(mContext, WelcomeActiviry.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(intent);
+            }
+        });
 
         btnCamera.setOnClickListener(new View.OnClickListener() {
             @Override

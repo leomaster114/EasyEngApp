@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.FrameLayout;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -38,6 +39,7 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
     TextView tv_forgetPass, tv_dont_have_acc;
     EditText edt_username, edt_pass;
     Context context;
+    private ProgressBar progressBar;
 
     public LoginFragment() {
         // Required empty public constructor
@@ -55,7 +57,7 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
         tv_dont_have_acc = view.findViewById(R.id.tv_donthave_acc);
         edt_username = view.findViewById(R.id.edt_username);
         edt_pass = view.findViewById(R.id.edt_password);
-
+    progressBar = view.findViewById(R.id.progressBar_login);
         btn_login.setOnClickListener(this);
         tv_forgetPass.setOnClickListener(this);
         tv_dont_have_acc.setOnClickListener(this);
@@ -76,6 +78,7 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btn_login: {// click vào đăng nhập
+                progressBar.setVisibility(View.VISIBLE);
                 UserLogin();
                 break;
             }
@@ -133,10 +136,12 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
                     User user = result.getUser();
                     SharePrefManager.getInstance(context)
                             .saveUser(new User(user.getId(),user.getFullname(),username,pass,user.getEmail(),user.getAvatar()));//result.getUser()
+                    progressBar.setVisibility(View.GONE);
                     Intent intent = new Intent(context, MainActivity.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     startActivity(intent);
                 }else{
+                    progressBar.setVisibility(View.GONE);
                     edt_username.setError("Incorrect username or password!");
                     edt_username.setTextColor(Color.RED);
                     edt_pass.setError("Incorrect username or password!");
