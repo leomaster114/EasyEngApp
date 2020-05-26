@@ -67,6 +67,9 @@ public class MainActivity extends AppCompatActivity {
             case R.id.App_setup:
                 Toast.makeText(MainActivity.this,"Cài đặt ứng dụng",Toast.LENGTH_LONG).show();
                 break;
+            case R.id.App_feedback:
+                Toast.makeText(MainActivity.this,"Báo cáo ứng dụng",Toast.LENGTH_LONG).show();
+                break;
         }
         return super.onOptionsItemSelected(item);
     }

@@ -136,6 +136,19 @@
                 android:textSize="24sp" />
 
             <Button
+                android:id="@+id/btnSaveInfor"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="#FFF"
+                android:gravity="center"
+                android:layout_marginTop="15dp"
+                android:text="Lưu thông tin cá nhân"
+                android:textColor="#8D2BAC"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <Button
                 android:id="@+id/btnShareResult"
                 android:layout_width="300dp"
                 android:layout_height="60dp"
@@ -211,7 +224,7 @@
                     android:layout_marginLeft="80dp"
                     android:layout_marginTop="10dp"
                     android:layout_marginRight="15dp"
-                    android:text="Thời gian nhắc nhở:"
+                    android:text="Thời gian nhắc nhở"
                     android:textColor="@color/btn_login_color"
                     android:textSize="22sp"
                     android:textStyle="bold" />

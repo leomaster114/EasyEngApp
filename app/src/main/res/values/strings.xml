@@ -5,6 +5,7 @@
     //option menu
     <string name="app_info">Thông tin ứng dụng</string>
     <string name="set_up">Cài đặt</string>
+    <string name="feed_back">Báo cáo ứng dụng</string>
     <string name="hint_email_login">Nhập email của bạn</string>
     <string name="hint_password_login">Nhập password của bạn</string>
     <string name="text_login">Đăng nhập</string>

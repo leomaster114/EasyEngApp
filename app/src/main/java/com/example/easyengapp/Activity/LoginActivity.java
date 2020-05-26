@@ -53,6 +53,9 @@ public class LoginActivity extends AppCompatActivity {
             case R.id.App_setup:
                 Toast.makeText(this, "Cài đặt ứng dụng", Toast.LENGTH_LONG).show();
                 break;
+            case R.id.App_feedback:
+                Toast.makeText(this,"Báo cáo ứng dụng",Toast.LENGTH_LONG).show();
+                break;
         }
         return super.onOptionsItemSelected(item);
     }
