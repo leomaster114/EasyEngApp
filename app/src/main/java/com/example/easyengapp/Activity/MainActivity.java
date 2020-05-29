@@ -5,9 +5,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.ViewTreeObserver;
 import android.widget.Toast;
 
 import com.example.easyengapp.Adapter.ViewPagerAdapter;
@@ -24,6 +28,7 @@ public class MainActivity extends AppCompatActivity {
     public PracticeFragment practiceFragment;
     public DictionaryFragment dictionaryFragment;
     public ProfileFagment profileFagment;
+    boolean isOpened = false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,7 +66,6 @@ public class MainActivity extends AppCompatActivity {
         adapter.addFragment(profileFagment,"");
         viewPager.setAdapter(adapter);
     }
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.option_menu_main,menu);
@@ -80,4 +84,5 @@ public class MainActivity extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
+
 }

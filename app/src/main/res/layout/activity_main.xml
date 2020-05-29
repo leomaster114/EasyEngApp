@@ -6,18 +6,20 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".Activity.MainActivity">
-<androidx.viewpager.widget.ViewPager
-    android:id="@+id/view_pager"
-    android:layout_width="match_parent"
-    android:layout_height="0dp"
-    android:layout_weight="9"/>
-<com.google.android.material.tabs.TabLayout
-    android:id="@+id/tab_layout"
-    android:layout_width="match_parent"
-    android:layout_height="0dp"
-    android:layout_weight="1"
-    app:tabSelectedTextColor="@color/textSelected_tablayout"
-    app:tabBackground="@color/tablayout_backgound"
-    app:tabTextColor="@color/text_tablayout_color"/>
+
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/view_pager"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="9" />
+
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/tab_layout"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        app:tabBackground="@color/tablayout_backgound"
+        app:tabSelectedTextColor="@color/textSelected_tablayout"
+        app:tabTextColor="@color/text_tablayout_color" />
 
 </LinearLayout>

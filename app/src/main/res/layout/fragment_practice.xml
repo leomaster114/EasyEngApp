@@ -35,13 +35,14 @@
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:padding="10dp"
                         android:background="@drawable/custom_round_imgview"
                         android:src="@drawable/family" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Google"
+                        android:text="Family"
                         android:textColor="#000"
                         android:textSize="24dp"
                         android:textStyle="bold" />
@@ -68,6 +69,7 @@
                         android:orientation="vertical">
 
                         <ImageView
+                            android:padding="10dp"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:background="@drawable/custom_round_imgview"
@@ -76,7 +78,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Google"
+                            android:text="Animal"
                             android:textColor="#000"
                             android:textSize="24dp"
                             android:textStyle="bold" />
@@ -92,15 +94,16 @@
                         android:orientation="vertical">
 
                         <ImageView
+                            android:padding="10dp"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:background="@drawable/custom_round_imgview"
-                            android:src="@drawable/family" />
+                            android:src="@drawable/nature" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Google"
+                            android:text="Nature"
                             android:textColor="#000"
                             android:textSize="24dp"
                             android:textStyle="bold" />
@@ -118,15 +121,16 @@
                     android:orientation="vertical">
 
                     <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:padding="10dp"
                         android:background="@drawable/custom_round_imgview"
                         android:src="@drawable/house" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Google"
+                        android:text="House"
                         android:textColor="#000"
                         android:textSize="24dp"
                         android:textStyle="bold" />
@@ -153,15 +157,16 @@
                         android:orientation="vertical">
 
                         <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
+                            android:padding="10dp"
+                            android:layout_width="80dp"
+                            android:layout_height="80dp"
                             android:background="@drawable/custom_round_imgview"
-                            android:src="@drawable/logogg" />
+                            android:src="@drawable/travel" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Google"
+                            android:text="Travel"
                             android:textColor="#000"
                             android:textSize="24dp"
                             android:textStyle="bold" />
@@ -177,15 +182,16 @@
                         android:orientation="vertical">
 
                         <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
+                            android:padding="10dp"
+                            android:layout_width="80dp"
+                            android:layout_height="80dp"
                             android:background="@drawable/custom_round_imgview"
-                            android:src="@drawable/logogg" />
+                            android:src="@drawable/social" />
 
                         <TextView
-                            android:layout_width="wrap_content"
+                            android:layout_width="81dp"
                             android:layout_height="wrap_content"
-                            android:text="Google"
+                            android:text="Social"
                             android:textColor="#000"
                             android:textSize="24dp"
                             android:textStyle="bold" />
@@ -233,6 +239,7 @@
                     android:orientation="vertical">
 
                     <ImageView
+                        android:padding="10dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:background="@drawable/custom_round_imgview"
@@ -268,6 +275,7 @@
                         android:orientation="vertical">
 
                         <ImageView
+                            android:padding="10dp"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:background="@drawable/custom_round_imgview"
@@ -292,6 +300,7 @@
                         android:orientation="vertical">
 
                         <ImageView
+                            android:padding="10dp"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:background="@drawable/custom_round_imgview"
@@ -318,6 +327,7 @@
                     android:orientation="vertical">
 
                     <ImageView
+                        android:padding="10dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:background="@drawable/custom_round_imgview"
@@ -353,6 +363,7 @@
                         android:orientation="vertical">
 
                         <ImageView
+                            android:padding="10dp"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:background="@drawable/custom_round_imgview"
@@ -377,6 +388,7 @@
                         android:orientation="vertical">
 
                         <ImageView
+                            android:padding="10dp"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:background="@drawable/custom_round_imgview"
@@ -403,6 +415,7 @@
                         android:layout_height="3dp"
                         android:background="#FFC107" />
                     <ImageView
+                        android:padding="10dp"
                         android:layout_weight="1"
                         android:src="@drawable/success"
                         android:layout_width="150dp"
@@ -433,6 +446,7 @@
                     android:orientation="vertical">
 
                     <ImageView
+                        android:padding="10dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:background="@drawable/custom_round_imgview"
@@ -468,6 +482,7 @@
                         android:orientation="vertical">
 
                         <ImageView
+                            android:padding="10dp"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:background="@drawable/custom_round_imgview"
@@ -492,6 +507,7 @@
                         android:orientation="vertical">
 
                         <ImageView
+                            android:padding="10dp"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:background="@drawable/custom_round_imgview"
@@ -518,6 +534,7 @@
                     android:orientation="vertical">
 
                     <ImageView
+                        android:padding="10dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:background="@drawable/custom_round_imgview"
@@ -553,6 +570,7 @@
                         android:orientation="vertical">
 
                         <ImageView
+                            android:padding="10dp"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:background="@drawable/custom_round_imgview"
@@ -577,6 +595,7 @@
                         android:orientation="vertical">
 
                         <ImageView
+                            android:padding="10dp"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:background="@drawable/custom_round_imgview"
@@ -603,6 +622,7 @@
                         android:layout_height="3dp"
                         android:background="#FFC107" />
                     <ImageView
+                        android:padding="10dp"
                         android:layout_weight="1"
                         android:src="@drawable/success"
                         android:layout_width="150dp"
