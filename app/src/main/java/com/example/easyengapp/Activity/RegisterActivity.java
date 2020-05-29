@@ -15,6 +15,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -45,9 +46,9 @@ import retrofit2.Response;
 
 public class RegisterActivity extends AppCompatActivity implements View.OnClickListener {
     EditText edt_email,edt_name,edt_pass,edt_username;
-    Button btn_register, btn_login_fb;
-    SignInButton signInButton;
+    Button btn_register, btn_login_fb, btn_login_gg;
     TextView tv_have_acc;
+    private ProgressBar progressBar;
     public static GoogleSignInClient signInClient;
     //Declare an instance of FirebaseAuth
     private FirebaseAuth mAuth;
@@ -62,12 +63,13 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         edt_username = findViewById(R.id.edt_username);
         btn_register = findViewById(R.id.btn_register);
         btn_login_fb = findViewById(R.id.btn_login_fb);
-        signInButton = findViewById(R.id.btn_login_gg);
+        btn_login_gg = findViewById(R.id.btn_login_gg);
         tv_have_acc = findViewById(R.id.tv_have_acc);
+        progressBar = findViewById(R.id.progressBar);
         // click event
         btn_register.setOnClickListener(this);
         btn_login_fb.setOnClickListener(this);
-        signInButton.setOnClickListener(this);
+        btn_login_gg.setOnClickListener(this);
         tv_have_acc.setOnClickListener(this);
         // Initialize Firebase Auth
         mAuth = FirebaseAuth.getInstance();
@@ -102,6 +104,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         switch (v.getId()){
             case R.id.btn_register:{// click Dang ky
                 //save in database
+                progressBar.setVisibility(View.VISIBLE);
                 UserRegister();
                 break;
             }
@@ -114,6 +117,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
             }
             case R.id.btn_login_gg:{
                 // xử lý login bằng google
+                progressBar.setVisibility(View.VISIBLE);
                LoginGoogle();
                 break;
             }
@@ -155,9 +159,11 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         mAuth.signInWithCredential(authCredential).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
+                progressBar.setVisibility(View.GONE);
                 if(task.isSuccessful()){
                     Toast.makeText(RegisterActivity.this,"Successfully",Toast.LENGTH_SHORT).show();
                     FirebaseUser user = mAuth.getCurrentUser();
+
                     updateUI(user);
 
                 }else{
@@ -243,6 +249,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
             public void onResponse(Call<RegisterResponse> call, Response<RegisterResponse> response) {
                 RegisterResponse result = response.body();
                 if(result.isStatus()){
+                    progressBar.setVisibility(View.GONE);
                     Toast.makeText(RegisterActivity.this,"Đăng ký thành công",Toast.LENGTH_LONG).show();
                     Intent intent = new Intent(RegisterActivity.this,LoginActivity.class);
                     startActivity(intent);
