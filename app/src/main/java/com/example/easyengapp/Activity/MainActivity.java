@@ -4,7 +4,6 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -13,9 +12,8 @@ import android.widget.Toast;
 import com.example.easyengapp.Adapter.ViewPagerAdapter;
 import com.example.easyengapp.Fragment.DictionaryFragment;
 import com.example.easyengapp.Fragment.PracticeFragment;
-import com.example.easyengapp.Fragment.ProfileFagment;
+import com.example.easyengapp.Fragment.ProfileFragment;
 import com.example.easyengapp.R;
-import com.example.easyengapp.storage.SharePrefManager;
 import com.google.android.material.tabs.TabLayout;
 
 public class MainActivity extends AppCompatActivity {
@@ -23,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
     TabLayout tabLayout;
     public PracticeFragment practiceFragment;
     public DictionaryFragment dictionaryFragment;
-    public ProfileFagment profileFagment;
+    public ProfileFragment profileFragment;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,11 +52,11 @@ public class MainActivity extends AppCompatActivity {
     private void setupViewPager(ViewPager viewPager) {
         practiceFragment = new PracticeFragment();
         dictionaryFragment = new DictionaryFragment();
-        profileFagment = new ProfileFagment();
+        profileFragment = new ProfileFragment();
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
         adapter.addFragment(practiceFragment,"");
         adapter.addFragment(dictionaryFragment,"");
-        adapter.addFragment(profileFagment,"");
+        adapter.addFragment(profileFragment,"");
         viewPager.setAdapter(adapter);
     }
 

@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.TimePickerDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
@@ -15,6 +16,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import android.provider.MediaStore;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,18 +32,29 @@ import com.example.easyengapp.Activity.RegisterActivity;
 import com.example.easyengapp.Activity.WelcomeActiviry;
 import com.example.easyengapp.R;
 import com.example.easyengapp.Retrofit.RetrofitClient;
+import com.example.easyengapp.Retrofit.RetrofitClient2;
+import com.example.easyengapp.moldel.UpdateAvatarResponse;
 import com.example.easyengapp.moldel.UpdateUserResponse;
 import com.example.easyengapp.moldel.User;
 import com.example.easyengapp.storage.SharePrefManager;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
+import com.google.gson.Gson;
 import com.squareup.picasso.Picasso;
 
+import org.json.JSONObject;
+
 import java.io.ByteArrayOutputStream;
+import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
+import okhttp3.MediaType;
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -52,7 +65,7 @@ import retrofit2.Response;
  * fragment hồ sơ cá nhân
  */
 
-public class ProfileFagment extends Fragment {
+public class ProfileFragment extends Fragment {
 
     Button btnChangeAvatar, btnUpdateInfor, btnRemindTime, btnLogout;
     ImageButton btnCamera, btnFolder;
@@ -65,7 +78,7 @@ public class ProfileFagment extends Fragment {
     int REQUEST_CODE_CAMERA = 123;
     int REQUEST_CODE_FOLDER = 456;
 
-    public ProfileFagment() {
+    public ProfileFragment() {
         // Required empty public constructor
     }
 
@@ -74,7 +87,7 @@ public class ProfileFagment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_profile_fagment, container, false);
+        View view = inflater.inflate(R.layout.fragment_profile_fragment, container, false);
         mContext = getContext();
         btnChangeAvatar = view.findViewById(R.id.btnChangeAvatar);
         btnUpdateInfor = view.findViewById(R.id.btnUpdateInfor);
@@ -120,25 +133,16 @@ public class ProfileFagment extends Fragment {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent();
+                intent.setAction(Intent.ACTION_PICK);
                 intent.setType("image/*");
-                intent.setAction(Intent.ACTION_GET_CONTENT);
                 startActivityForResult(intent, REQUEST_CODE_FOLDER);
-                ;
             }
         });
 
         btnChangeAvatar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // convert bitmap image to byte[]
-                BitmapDrawable bitmapDrawable = (BitmapDrawable) imgViewAvatar.getDrawable();
-                Bitmap bitmap = bitmapDrawable.getBitmap();
-                ByteArrayOutputStream byteArray = new ByteArrayOutputStream();
-                bitmap.compress(Bitmap.CompressFormat.PNG, 100, byteArray);
-                byte[] byteAvatarImage = byteArray.toByteArray();
-
-                // .... Save ...
-                Toast.makeText(getActivity(), "Lưu ảnh đại diện thành công!", Toast.LENGTH_SHORT).show();
+                updateAvatar();
             }
         });
 
@@ -248,13 +252,63 @@ public class ProfileFagment extends Fragment {
                     User updatedUser = res.getUser();
                     SharePrefManager.getInstance(mContext).saveUser(updatedUser);
                 } else {
-                    Toast.makeText(mContext, "Cập nhật thông tin thất bại!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(mContext, "Đã xảy ra lỗi!!", Toast.LENGTH_SHORT).show();
                 }
             }
 
             @Override
             public void onFailure(Call<UpdateUserResponse> call, Throwable t) {
                 Toast.makeText(mContext, t.getMessage(), Toast.LENGTH_LONG).show();
+            }
+        });
+    }
+
+    private void updateAvatar() {
+        String userId = SharePrefManager.getInstance(mContext).getUser().getId();
+
+        BitmapDrawable bitmapDrawable = (BitmapDrawable) imgViewAvatar.getDrawable();
+        Bitmap bitmap = bitmapDrawable.getBitmap();
+        ByteArrayOutputStream bos = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 0, bos);
+        byte[] bitmapData = bos.toByteArray();
+
+        File filesDir = mContext.getFilesDir();
+        File file = new File(filesDir, "image" + System.currentTimeMillis() + ".JPEG");
+
+        try {
+            FileOutputStream fos = new FileOutputStream(file);
+            Log.d("MSG","--> File name: " + file.getName());
+            Log.d("MSG", "--> File path: " + file.getAbsolutePath());
+            Log.d("MSG", "--> File extension: " + file.getAbsolutePath().substring(file.getAbsolutePath().lastIndexOf(".")));
+            fos.write(bitmapData);
+            fos.flush();
+            fos.close();
+        } catch (Exception e) {
+            Log.d("MSG", e.getMessage());
+        }
+
+        RequestBody requestBody = RequestBody.create(MediaType.parse("multipart/form-data"), file);
+        MultipartBody.Part body = MultipartBody.Part.createFormData("single_image", file.getName(), requestBody);
+
+        Call<UpdateAvatarResponse> call = RetrofitClient2.getInstance().getApi().updateAvatar(userId, body);
+        call.enqueue(new Callback<UpdateAvatarResponse>() {
+            @Override
+            public void onResponse(Call<UpdateAvatarResponse> call, Response<UpdateAvatarResponse> response) {
+                UpdateAvatarResponse res = response.body();
+                if (res.getError() == null) {
+                    User user = SharePrefManager.getInstance(mContext).getUser();
+                    user.setAvatar(res.getLocation());
+                    Toast.makeText(getActivity(), "Cập nhật ảnh đại diện thành công!", Toast.LENGTH_SHORT).show();
+                } else {
+                    Log.d("MSG", res.getError());
+                    Toast.makeText(getActivity(), res.getError(), Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<UpdateAvatarResponse> call, Throwable t) {
+                Log.d("MSG", t.getMessage());
+                Toast.makeText(mContext, "Đã xảy ra lỗi!", Toast.LENGTH_SHORT).show();
             }
         });
     }
