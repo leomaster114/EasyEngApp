@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#6FD9E6"
+    android:orientation="vertical"
+    tools:context=".Activity.WordDictionary">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:paddingTop="15dp"
+        android:paddingBottom="15dp"
+        android:text="Từ điển Anh - Việt"
+        android:textColor="#150435"
+        android:textSize="32sp"
+        android:textStyle="bold" />
+
+    <EditText
+        android:id="@+id/edt_search"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:background="@drawable/edt_custom"
+        android:drawableLeft="@drawable/ic_btn_search"
+        android:hint="Tìm kiếm"
+        android:gravity="center"
+        android:paddingLeft="20dp"
+        android:textColor="#000"
+        android:textColorHint="#0C0C00" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/list_word"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="5dp" />
+
+</LinearLayout>

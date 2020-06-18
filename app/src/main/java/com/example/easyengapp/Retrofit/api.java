@@ -1,12 +1,11 @@
 package com.example.easyengapp.Retrofit;
 
-import com.example.easyengapp.moldel.LoginResponse;
-import com.example.easyengapp.moldel.RegisterResponse;
-import com.example.easyengapp.moldel.User;
+import com.example.easyengapp.Model.LoginResponse;
+import com.example.easyengapp.Model.RegisterResponse;
+import com.example.easyengapp.Model.User;
 
 import java.util.List;
 
-import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.Field;

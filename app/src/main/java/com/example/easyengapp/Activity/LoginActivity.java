@@ -7,11 +7,13 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.FrameLayout;
@@ -53,6 +55,9 @@ public class LoginActivity extends AppCompatActivity {
             case R.id.App_setup:
                 Toast.makeText(this, "Cài đặt ứng dụng", Toast.LENGTH_LONG).show();
                 break;
+            case R.id.App_feedback:
+                Toast.makeText(this,"Báo cáo ứng dụng",Toast.LENGTH_SHORT).show();
+                break;
         }
         return super.onOptionsItemSelected(item);
     }
@@ -64,5 +69,10 @@ public class LoginActivity extends AppCompatActivity {
         frameLayout.setVisibility(View.VISIBLE);
         frameLayout = findViewById(R.id.replaceFragment2);
         frameLayout.setVisibility(View.GONE);
+    }
+
+    public void hideKeyboard(View view) {
+        InputMethodManager inputMethodManager   = (InputMethodManager) getSystemService(Activity.INPUT_METHOD_SERVICE);
+        inputMethodManager.hideSoftInputFromWindow(view.getWindowToken(),0);
     }
 }

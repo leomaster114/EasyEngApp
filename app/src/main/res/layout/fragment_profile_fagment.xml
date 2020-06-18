@@ -11,7 +11,7 @@
         android:layout_height="match_parent">
 
         <LinearLayout
-            android:background="#FFF"
+            android:background="#6FD9E6"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
@@ -62,7 +62,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:background="#FFF"
+                android:background="#6FD9E6"
                 android:gravity="center"
                 android:text="Lưu ảnh đại diện"
                 android:textColor="#8D2BAC"
@@ -223,7 +223,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-                    android:background="#FFF"
+                    android:background="#6FD9E6"
                     android:textColor="@color/colorPrimaryDark"
                     android:textStyle="italic"
                     android:textSize="16sp"

@@ -28,7 +28,7 @@ import android.widget.Toast;
 import com.example.easyengapp.Activity.RegisterActivity;
 import com.example.easyengapp.Activity.WelcomeActiviry;
 import com.example.easyengapp.R;
-import com.example.easyengapp.moldel.User;
+import com.example.easyengapp.Model.User;
 import com.example.easyengapp.storage.SharePrefManager;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.squareup.picasso.Picasso;

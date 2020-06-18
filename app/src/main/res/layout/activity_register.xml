@@ -9,6 +9,7 @@
 
     <FrameLayout
         android:id="@+id/frameRegister1"
+        android:onClick="hideKeyboard"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:visibility="visible">
@@ -139,6 +140,7 @@
     </FrameLayout>
 
     <FrameLayout
+        android:onClick="hideKeyboard"
         android:id="@+id/frameRegister2"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
