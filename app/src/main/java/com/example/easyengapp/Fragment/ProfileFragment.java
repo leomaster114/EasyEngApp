@@ -1,6 +1,8 @@
 package com.example.easyengapp.Fragment;
 
 import android.app.Activity;
+import android.app.AlarmManager;
+import android.app.PendingIntent;
 import android.app.TimePickerDialog;
 import android.content.Context;
 import android.content.Intent;
@@ -21,6 +23,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -30,6 +33,7 @@ import android.widget.Toast;
 
 import com.example.easyengapp.Activity.RegisterActivity;
 import com.example.easyengapp.Activity.WelcomeActiviry;
+import com.example.easyengapp.Notification.AlertReceiver;
 import com.example.easyengapp.R;
 import com.example.easyengapp.Retrofit.RetrofitClient;
 import com.example.easyengapp.Retrofit.RetrofitClient2;
@@ -48,6 +52,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.InputStream;
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
@@ -67,7 +72,7 @@ import retrofit2.Response;
 
 public class ProfileFragment extends Fragment {
 
-    Button btnChangeAvatar, btnUpdateInfor, btnRemindTime, btnLogout;
+    Button btnChangeAvatar, btnUpdateInfor, btnRemind, btnLogout;
     ImageButton btnCamera, btnFolder;
     ImageView imgViewAvatar;
     Switch remindSwitch;
@@ -82,7 +87,6 @@ public class ProfileFragment extends Fragment {
         // Required empty public constructor
     }
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -93,9 +97,10 @@ public class ProfileFragment extends Fragment {
         btnUpdateInfor = view.findViewById(R.id.btnUpdateInfor);
         btnCamera = view.findViewById(R.id.btnCamera);
         btnFolder = view.findViewById(R.id.btnFolder);
-        btnRemindTime = view.findViewById(R.id.btnRemindTime);
-        imgViewAvatar = view.findViewById(R.id.imgViewAvatar);
+        btnRemind = view.findViewById(R.id.btnRemind);
+        btnRemind.setText(SharePrefManager.getInstance(mContext).getRemindTime());
         remindSwitch = view.findViewById(R.id.remindSwitch);
+        imgViewAvatar = view.findViewById(R.id.imgViewAvatar);
         btnLogout = view.findViewById(R.id.btnLogout);
         edtName = view.findViewById(R.id.edtName);
         edtEmail = view.findViewById(R.id.edtEmail);
@@ -154,22 +159,34 @@ public class ProfileFragment extends Fragment {
             }
         });
 
-        btnRemindTime.setOnClickListener(new View.OnClickListener() {
+        btnRemind.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                TimePicker();
+                setRemind();
             }
         });
+
+        remindSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
+                if(isChecked){
+                    btnRemind.setEnabled(true);
+                    Toast.makeText(mContext, "Đã bật thông báo luyện tập.", Toast.LENGTH_SHORT).show();
+                }
+                else{
+                    cancelAlarm();
+                    Toast.makeText(mContext, "Đã tắt thông báo luyện tập.", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
         return view;
     }
 
-    private void TimePicker() {
+    private void setRemind() {
         final Calendar calendar = Calendar.getInstance();
         int hour = calendar.get(Calendar.HOUR_OF_DAY);
         int minute = calendar.get(Calendar.MINUTE);
-        final int date = calendar.get(Calendar.DATE) + 1;
-        final int month = calendar.get(Calendar.MONTH);
-        final int year = calendar.get(Calendar.YEAR);
 
         TimePickerDialog timePickerDialog = new TimePickerDialog(
                 getActivity(),
@@ -179,8 +196,13 @@ public class ProfileFragment extends Fragment {
                         //i: hour , i1: minute
                         // Time format: HH:mm:ss
                         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("HH:mm");
-                        calendar.set(year, month, date, i, i1);
-                        btnRemindTime.setText(simpleDateFormat.format(calendar.getTime()));
+                        calendar.set(Calendar.HOUR_OF_DAY, i);
+                        calendar.set(Calendar.MINUTE, i1);
+                        calendar.set(Calendar.SECOND, 0);
+                        btnRemind.setText(simpleDateFormat.format(calendar.getTime()));
+                        SharePrefManager.getInstance(mContext).saveRemindTime(btnRemind.getText().toString());
+                        startAlarm(calendar);
+                        Toast.makeText(mContext, "Thông báo luyện tập đã được đặt.", Toast.LENGTH_SHORT).show();
                     }
                 },
                 hour,
@@ -277,7 +299,7 @@ public class ProfileFragment extends Fragment {
 
         try {
             FileOutputStream fos = new FileOutputStream(file);
-            Log.d("MSG","--> File name: " + file.getName());
+            Log.d("MSG", "--> File name: " + file.getName());
             Log.d("MSG", "--> File path: " + file.getAbsolutePath());
             Log.d("MSG", "--> File extension: " + file.getAbsolutePath().substring(file.getAbsolutePath().lastIndexOf(".")));
             fos.write(bitmapData);
@@ -297,11 +319,14 @@ public class ProfileFragment extends Fragment {
                 UpdateAvatarResponse res = response.body();
                 if (res.getError() == null) {
                     User user = SharePrefManager.getInstance(mContext).getUser();
+                    Log.d("MSG", res.getLocation());
                     user.setAvatar(res.getLocation());
+                    SharePrefManager.getInstance(mContext).saveUser(user);
+                    // Picasso.with(mContext).load(Uri.parse(user.getAvatar())).into(imgViewAvatar);
                     Toast.makeText(getActivity(), "Cập nhật ảnh đại diện thành công!", Toast.LENGTH_SHORT).show();
                 } else {
                     Log.d("MSG", res.getError());
-                    Toast.makeText(getActivity(), res.getError(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(), res.getError(), Toast.LENGTH_LONG).show();
                 }
             }
 
@@ -311,5 +336,26 @@ public class ProfileFragment extends Fragment {
                 Toast.makeText(mContext, "Đã xảy ra lỗi!", Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+    // Notification/ Alarm Handler
+
+    private void startAlarm(Calendar c) {
+        AlarmManager alarmManager = (AlarmManager) mContext.getSystemService(Context.ALARM_SERVICE);
+        Intent intent = new Intent(mContext, AlertReceiver.class);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(mContext, 1, intent, 0);
+        if (c.before(Calendar.getInstance())) {
+            c.add(Calendar.DATE, 1);
+        }
+        alarmManager.setExact(AlarmManager.RTC_WAKEUP, c.getTimeInMillis(), pendingIntent);
+    }
+
+    private void cancelAlarm() {
+        AlarmManager alarmManager = (AlarmManager) mContext.getSystemService(Context.ALARM_SERVICE);
+        Intent intent = new Intent(mContext, AlertReceiver.class);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(mContext, 1, intent, 0);
+        alarmManager.cancel(pendingIntent);
+        btnRemind.setText("Disabled");
+        btnRemind.setEnabled(false);
     }
 }

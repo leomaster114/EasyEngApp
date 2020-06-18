@@ -28,6 +28,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".Activity.MainActivity"></activity>
+
+        <receiver android:name=".Notification.AlertReceiver"/>
     </application>
 
 </manifest>
