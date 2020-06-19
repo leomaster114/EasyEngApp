@@ -1,10 +1,11 @@
 package com.example.easyengapp.Retrofit;
 
-import com.example.easyengapp.moldel.LoginResponse;
-import com.example.easyengapp.moldel.RegisterResponse;
-import com.example.easyengapp.moldel.UpdateAvatarResponse;
-import com.example.easyengapp.moldel.UpdateUserResponse;
-import com.example.easyengapp.moldel.User;
+import com.example.easyengapp.Model.LoginResponse;
+import com.example.easyengapp.Model.RegisterResponse;
+import com.example.easyengapp.Model.UpdateAvatarResponse;
+import com.example.easyengapp.Model.UpdateUserResponse;
+import com.example.easyengapp.Model.User;
+
 
 import java.util.List;
 

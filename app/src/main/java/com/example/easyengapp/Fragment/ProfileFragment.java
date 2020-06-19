@@ -6,17 +6,12 @@ import android.app.PendingIntent;
 import android.app.TimePickerDialog;
 import android.content.Context;
 import android.content.Intent;
-import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Bundle;
-
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -31,35 +26,33 @@ import android.widget.Switch;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+
 import com.example.easyengapp.Activity.RegisterActivity;
 import com.example.easyengapp.Activity.WelcomeActiviry;
+import com.example.easyengapp.Model.UpdateAvatarResponse;
+import com.example.easyengapp.Model.UpdateUserResponse;
+import com.example.easyengapp.Model.User;
 import com.example.easyengapp.Notification.AlertReceiver;
 import com.example.easyengapp.R;
 import com.example.easyengapp.Retrofit.RetrofitClient;
 import com.example.easyengapp.Retrofit.RetrofitClient2;
-import com.example.easyengapp.moldel.UpdateAvatarResponse;
-import com.example.easyengapp.moldel.UpdateUserResponse;
-import com.example.easyengapp.moldel.User;
 import com.example.easyengapp.storage.SharePrefManager;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
-import com.google.gson.Gson;
 import com.squareup.picasso.Picasso;
-
-import org.json.JSONObject;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.InputStream;
-import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
-import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;

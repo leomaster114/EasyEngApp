@@ -2,80 +2,121 @@ package com.example.easyengapp.Activity;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.viewpager.widget.ViewPager;
+import androidx.fragment.app.Fragment;
 
+import android.app.Activity;
+import android.app.ProgressDialog;
+import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Toast;
 
-import com.example.easyengapp.Adapter.ViewPagerAdapter;
+import com.example.easyengapp.Database.MyDatabase;
+import com.example.easyengapp.Database.TranferDatabase;
 import com.example.easyengapp.Fragment.DictionaryFragment;
 import com.example.easyengapp.Fragment.PracticeFragment;
 import com.example.easyengapp.Fragment.ProfileFragment;
 import com.example.easyengapp.R;
-import com.google.android.material.tabs.TabLayout;
+import com.example.easyengapp.storage.SharePrefManager;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity {
-    ViewPager viewPager;
-    TabLayout tabLayout;
-    public PracticeFragment practiceFragment;
-    public DictionaryFragment dictionaryFragment;
-    public ProfileFragment profileFragment;
+
+    private boolean isFirstTime;
+    private SharePrefManager prefManager;
+    private TranferDatabase tranferDatabase;
+    private MyDatabase database;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        viewPager = findViewById(R.id.view_pager);
-        tabLayout = findViewById(R.id.tab_layout);
-        setupViewPager(viewPager);
-        tabLayout.setupWithViewPager(viewPager);
-        setupTabIcons();
-    }
-/*
-    @Override
-    public void onStart() {
-        super.onStart();
-        if(!SharePrefManager.getInstance(this).isLoggedIn()){
-            Intent intent = new Intent(this,WelcomeActiviry.class);
-            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK);
-            startActivity(intent);
-        }
-    }
-    */
-    private void setupTabIcons() {
-        tabLayout.getTabAt(0).setIcon(R.drawable.practice);
-        tabLayout.getTabAt(1).setIcon(R.drawable.achive);
-        tabLayout.getTabAt(2).setIcon(R.drawable.profile);
+
+        BottomNavigationView bottomNav = findViewById(R.id.bottom_navigation);
+        bottomNav.setOnNavigationItemSelectedListener(navigationItemSelectedListener);
+        getSupportFragmentManager().beginTransaction().replace(R.id.frame_container, new PracticeFragment()).commit();
+        //
+        prefManager = SharePrefManager.getInstance(this);
+        isFirstTime = prefManager.getFistTime();
+        database = new MyDatabase(this);
+        Log.d("Main", "onCreate: "+(database==null));
+        initDatabase();
+
     }
 
-    private void setupViewPager(ViewPager viewPager) {
-        practiceFragment = new PracticeFragment();
-        dictionaryFragment = new DictionaryFragment();
-        profileFragment = new ProfileFragment();
-        ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
-        adapter.addFragment(practiceFragment,"");
-        adapter.addFragment(dictionaryFragment,"");
-        adapter.addFragment(profileFragment,"");
-        viewPager.setAdapter(adapter);
+    private void initDatabase() {
+        if(isFirstTime){
+            final ProgressDialog dialog = new ProgressDialog(this);
+            dialog.setCancelable(false);
+            dialog.setMessage(getString(R.string.init_db));
+            dialog.show();
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    tranferDatabase = new TranferDatabase(getApplicationContext(),true);
+                    dialog.dismiss();
+                    prefManager.saveIsFirstTime(false);
+                }
+            }).start();
+        }else{
+            tranferDatabase = new TranferDatabase(this,false);
+        }
     }
+
+    private BottomNavigationView.OnNavigationItemSelectedListener navigationItemSelectedListener =
+            new BottomNavigationView.OnNavigationItemSelectedListener() {
+                @Override
+                public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                    Fragment selectedFragment = null;
+                    switch (item.getItemId()) {
+                        case R.id.navigation_home:
+                            selectedFragment = new PracticeFragment();
+                            break;
+                        case R.id.navigation_favorite:
+                            selectedFragment = new DictionaryFragment();
+                            break;
+                        case R.id.navigation_notifications:
+                            selectedFragment = new ProfileFragment();
+                            break;
+                    }
+                    getSupportFragmentManager().beginTransaction().replace(R.id.frame_container, selectedFragment).commit();
+                    return true;
+                }
+            };
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.option_menu_main,menu);
+        getMenuInflater().inflate(R.menu.option_menu_main, menu);
         return super.onCreateOptionsMenu(menu);
     }
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        switch (item.getItemId()){
+        switch (item.getItemId()) {
             case R.id.App_info:
-                Toast.makeText(MainActivity.this,"Thông tin ứng dụng",Toast.LENGTH_LONG).show();
+                Toast.makeText(MainActivity.this, "Thông tin ứng dụng", Toast.LENGTH_LONG).show();
                 break;
             case R.id.App_setup:
-                Toast.makeText(MainActivity.this,"Cài đặt ứng dụng",Toast.LENGTH_LONG).show();
+                Toast.makeText(MainActivity.this, "Cài đặt ứng dụng", Toast.LENGTH_LONG).show();
+                break;
+            case R.id.App_feedback:
+                Toast.makeText(MainActivity.this, "Báo cáo ứng dụng", Toast.LENGTH_LONG).show();
                 break;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    public void hideKeyboard(View view) {
+        InputMethodManager inputMethodManager = null;
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.CUPCAKE) {
+            inputMethodManager = (InputMethodManager) getSystemService(Activity.INPUT_METHOD_SERVICE);
+        }
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.CUPCAKE) {
+            inputMethodManager.hideSoftInputFromWindow(view.getWindowToken(), 0);
+        }
     }
 }

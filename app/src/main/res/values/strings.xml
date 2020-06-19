@@ -13,5 +13,6 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="text_new_pass">Nhận mật khẩu mới</string>
+    <string name="init_db">Khởi tạo dữ liệu cho lần đầu, vui lòng đợi</string>
 
 </resources>

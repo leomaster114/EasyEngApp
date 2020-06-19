@@ -4,15 +4,16 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
-import android.net.Uri;
 import android.os.Bundle;
 import retrofit2.Call;
 import android.util.Patterns;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
@@ -21,14 +22,13 @@ import android.widget.Toast;
 
 import com.example.easyengapp.R;
 import com.example.easyengapp.Retrofit.RetrofitClient;
-import com.example.easyengapp.moldel.RegisterResponse;
-import com.example.easyengapp.moldel.User;
+import com.example.easyengapp.Model.RegisterResponse;
+import com.example.easyengapp.Model.User;
 import com.example.easyengapp.storage.SharePrefManager;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
-import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -38,9 +38,6 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
 
-import java.io.IOException;
-
-import okhttp3.ResponseBody;
 import retrofit2.Callback;
 import retrofit2.Response;
 
@@ -264,4 +261,9 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
             }
         });
     }
+
+        public void hideKeyboard(View view) {
+            InputMethodManager inputMethodManager   = (InputMethodManager) getSystemService(Activity.INPUT_METHOD_SERVICE);
+            inputMethodManager.hideSoftInputFromWindow(view.getWindowToken(),0);
+        }
 }

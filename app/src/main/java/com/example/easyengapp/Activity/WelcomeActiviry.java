@@ -9,7 +9,6 @@ import android.view.Window;
 import android.widget.Button;
 
 import com.example.easyengapp.R;
-import com.example.easyengapp.moldel.User;
 import com.example.easyengapp.storage.SharePrefManager;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;

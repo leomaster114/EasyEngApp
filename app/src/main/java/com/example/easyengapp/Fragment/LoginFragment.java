@@ -7,7 +7,6 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
-import android.util.Patterns;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,13 +17,12 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.easyengapp.Activity.LoginActivity;
 import com.example.easyengapp.Activity.MainActivity;
 import com.example.easyengapp.Activity.RegisterActivity;
 import com.example.easyengapp.R;
 import com.example.easyengapp.Retrofit.RetrofitClient;
-import com.example.easyengapp.moldel.LoginResponse;
-import com.example.easyengapp.moldel.User;
+import com.example.easyengapp.Model.LoginResponse;
+import com.example.easyengapp.Model.User;
 import com.example.easyengapp.storage.SharePrefManager;
 
 import retrofit2.Call;
@@ -151,7 +149,12 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
 
             @Override
             public void onFailure(Call<LoginResponse> call, Throwable t) {
-                Toast.makeText(context,t.getMessage(),Toast.LENGTH_LONG).show();
+//                Toast.makeText(context,t.getMessage(),Toast.LENGTH_LONG).show();
+                progressBar.setVisibility(View.GONE);
+                edt_username.setError("Incorrect username or password!");
+                edt_username.setTextColor(Color.RED);
+                edt_pass.setError("Incorrect username or password!");
+                edt_pass.setTextColor(Color.RED);
             }
         });
     }

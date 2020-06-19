@@ -3,7 +3,7 @@ package com.example.easyengapp.storage;
 import android.content.Context;
 import android.content.SharedPreferences;
 
-import com.example.easyengapp.moldel.User;
+import com.example.easyengapp.Model.User;
 
 public class SharePrefManager {
     private static final String SHARED_PREF_NAME = "my_shared_pref";
@@ -65,6 +65,17 @@ public class SharePrefManager {
                 sharedPreferences.getString("email", "null"),
                 sharedPreferences.getString("avatar", "null")
         );
+    }
+    // save isFirstTime run app
+    public void saveIsFirstTime(boolean isFirstTime){
+        SharedPreferences sharedPreferences = mContext.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putBoolean("FistTime",isFirstTime);
+        editor.apply();
+    }
+    public boolean getFistTime(){
+        SharedPreferences sharedPreferences = mContext.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
+        return sharedPreferences.getBoolean("FistTime",true);
     }
     public void clear(){
         SharedPreferences sharedPreferences = mContext.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
