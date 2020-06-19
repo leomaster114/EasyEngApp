@@ -4,12 +4,31 @@ public class Sentence {
     private int sentence_id;
     private String content;
     private String mean;
-//    private int topicId;
+    private Topic topic;
 
-    public Sentence(String content, String mean) {
+    public Sentence() {
+    }
+
+    public Sentence(String content, String mean, Topic topic) {
         this.content = content;
         this.mean = mean;
-//        this.topicId = topicId;
+        this.topic = topic;
+    }
+
+    public void setSentence_id(int sentence_id) {
+        this.sentence_id = sentence_id;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
+
+    public void setMean(String mean) {
+        this.mean = mean;
+    }
+
+    public void setTopic(Topic topic) {
+        this.topic = topic;
     }
 
     public int getSentence_id() {
@@ -24,7 +43,7 @@ public class Sentence {
         return mean;
     }
 
-//    public int getTopicId() {
-//        return topicId;
-//    }
+    public Topic getTopic() {
+        return topic;
+    }
 }

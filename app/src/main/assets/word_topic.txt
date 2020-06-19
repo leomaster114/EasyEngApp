@@ -1,0 +1,343 @@
+1 -grandmother
+1 -grandfather
+1 -mother
+1 -father
+1 -uncle
+1 -aunt
+1 -sister
+1 -brother
+1 -cousin
+1 -niece
+1 -nephew
+1 -only child
+1 -infant
+1 -toddler
+1 -twin
+1 -triplet
+1 -sibling
+1 -grandparent
+1 -grandson
+1 -granddaughter
+1 -son
+1 -relative
+1 -nanny
+1 -parent
+1 -orphan
+2 -fence
+2 -front door
+2 -balcony
+2 -attic
+2 -roof
+2 -chimney
+2 -Architecture
+2 -Building
+2 -Construct
+2 -Door
+2 -Elevator
+2 -Floor 
+2 -Garden
+2 -House
+2 -Kitchen
+2 -Living room
+2 -Stair
+2 -Villa
+2 -Yard
+3 -Athlete
+3 -Badminton
+3 -Baseball
+3 -Basketball
+3 -Beat
+3 -Champion
+3 -Coach
+3 -Competition
+3 -Football
+3 -Soccer
+3 -Game
+3 -Jogging
+3 -Opponent
+3 -Practice
+3 -Referee
+3 -Running
+3 -Score
+3 -Sporty
+3 -Stadium
+3 -Swimming
+3 -Team
+3 -Tennis
+3 -Tournament
+3 -Volleyball
+4 -Air plane
+4 -Airport
+4 -Arrival
+4 -Bike
+4 -Boat
+4 -Bus
+4 -Bus stop
+4 -Car
+4 -Delay
+4 -Departure 
+4 -Drive 
+4 -Motorbike 
+4 -Passenger 
+4 -Public transportation 
+4 -Ride 
+4 -Road 
+4 -Rush hour 
+4 -Ship 
+4 -Ship 
+4 -Subway 
+4 -Taxi 
+4 -Traffic 
+4 -Traffic jam 
+4 -Train 
+4 -Transport 
+5 -Bakery
+5 -Bank 
+5 -Bar 
+5 -Bus stop 
+5 -Café 
+5 -Citizen 
+5 -City hall 
+5 -Court 
+5 -Dwell 
+5 -Gas station 
+5 -Grocery store 
+5 -Hotel 
+5 -Library 
+5 -Movie theater 
+5 -Museum 
+5 -Park 
+5 -Parking lot 
+5 -Police station 
+5 -Post office 
+5 -Restaurant 
+5 -Road 
+5 -Shopping mall 
+5 -Store 
+5 -Street 
+5 -Supermarket 
+6 -Period 
+6 -Pencil 
+6 -Physical education
+6 -Physics 
+6 -Principal 
+6 -Professor 
+6 -Ruler 
+6 -School 
+6 -Primary school 
+6 -Secondary school 
+6 -High school 
+6 -School year 
+6 -Semester 
+6 -Student 
+6 -Study 
+6 -Subject 
+6 -Teacher 
+6 -Test 
+6 -Textbook 
+6 -Uniform 
+6 -University 
+7 -Bear
+7 -Bird
+7 -Cat 
+7 -Chicken 
+7 -Cow 
+7 -Dog 
+7 -Donkey 
+7 -Elephant 
+7 -Fish 
+7 -Goat 
+7 -Horse 
+7 -Insect 
+7 -Lion 
+7 -Monkey 
+7 -Mouse 
+7 -Ox 
+7 -Pig 
+7 -Rabbit 
+7 -Sheep 
+7 -Tiger 
+8 -Bloom 
+8 -Branch 
+8 -Bud 
+8 -Bush 
+8 -Flower 
+8 -Grass 
+8 -Grow 
+8 -Leaf 
+8 -Root 
+8 -Seed 
+8 -Thorn 
+8 -Tree 
+8 -Trunk 
+8 -Wood 
+9 -Apple 
+9 -Banana 
+9 -Cherry 
+9 -Coconut 
+9 -Grape 
+9 -Juice 
+9 -Juicy 
+9 -Lemon 
+9 -Lime 
+9 -Mango 
+9 -Orange 
+9 -Papaya 
+9 -Peach 
+9 -Pear 
+9 -Peel 
+9 -Pineapple 
+9 -Plum 
+9 -Ripe 
+9 -Strawberry 
+9 -Watermelon 
+10 -Accommodation 
+10 -Adventure 
+10 -Attraction 
+10 -Backpack 
+10 -Custom 
+10 -Destination 
+10 -Explore 
+10 -Flight 
+10 -Flight attendant 
+10 -Journey 
+10 -Map 
+10 -Memorable 
+10 -Memory 
+10 -Passport 
+10 -Passport 
+10 -Souvenir 
+10 -Suitcase 
+10 -Ticket 
+10 -Tour 
+10 -Tour guide 
+10 -Tourist 
+10 -Travel 
+10 -Trip 
+10 -Vacation 
+11 -Afternoon 
+11 -Calendar 
+11 -Century 
+11 -Date 
+11 -Day 
+11 -Decade 
+11 -Evening 
+11 -Fall 
+11 -Autumn 
+11 -Hour 
+11 -Minute 
+11 -Month 
+11 -Morning 
+11 -Night 
+11 -Noon 
+11 -Quarter 
+11 -Season 
+11 -Second 
+11 -Spring 
+11 -Summer 
+11 -Time 
+11 -Watch 
+11 -Winter 
+11 -Year 
+12 -Attractive 
+12-Beautiful 
+12-Body shape 
+12-Charming 
+12-Cute 
+12-Fat 
+12-Fit 
+12-Handsome 
+12-Height 
+12-Arm 
+12-Back 
+12-Belly 
+12-Blood 
+12-Body 
+12-Bone 
+12-Brain 
+13 -Blouse 
+13-Belt 
+13-Boot 
+13-Coat 
+13-Dress 
+13-Glasses 
+13-Glove 
+13-Handbag 
+13-Hat 
+13-Jacket 
+13-Jeans 
+13-Pants 
+13-Pyjama 
+13-Sandal
+13-Scarf 
+13-Shirt 
+13-Shoes 
+13-Short 
+13-Skirt 
+14 -Gateway 
+14-Packet 
+14-Source Code 
+14-Memory 
+14-Port 
+14-Microprocessor 
+14-Storage 
+14-Hardware 
+14-Configuration 
+14-Protocol 
+14-Technical 
+14-database
+15-Actor 
+15-Architect 
+15-Baker 
+15-Businessman 
+15-Chef 
+15-Cleaner 
+15-Dentist 
+15-Designer
+15-Engineer 
+15-Farmer 
+15-Fireman 
+15-Fisherman 
+15-Florist 
+15-Gardener 
+16-Absolute veto  
+16-Abuse 
+16-Ambassador  
+16-Anarchism  
+16-Bourgeoisie 
+16-Budget 
+16-Campaign 
+16-Candidate 
+16-Caution 
+16-Censor 
+16-Centralism 
+15-Citizen
+17- Art
+17-Artist 
+17-Artwork 
+17-Audience 
+17-Author 
+17-Band 
+17-Brush 
+17-Camera 
+17-Canvas 
+17-Choir 
+17-Clap 
+17-Collection 
+17-Composer 
+17-Concert 
+17-Creative 
+17-Culture 
+18- Allergy 
+18-Ambulance 
+18-Contagious 
+18-Bandage 
+18-Fever 
+18-Nurse 
+18-Surgeon
+18-Sick 
+18-Medicine 
+18-Thermometer 
+18-Toothache 
+18-Headache 
+18-Measles

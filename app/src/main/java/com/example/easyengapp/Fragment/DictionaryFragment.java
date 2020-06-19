@@ -20,6 +20,8 @@ import android.widget.Toast;
 
 import com.example.easyengapp.Adapter.SubjectAdapter;
 import com.example.easyengapp.Database.ImageForSubject;
+import com.example.easyengapp.Database.MyDatabase;
+import com.example.easyengapp.Model.Topic;
 import com.example.easyengapp.R;
 import com.google.android.material.tabs.TabLayout;
 
@@ -30,15 +32,13 @@ import java.util.ArrayList;
  * fragment thành tích
  */
 public class DictionaryFragment extends Fragment {
-    ViewPager viewPager;
-    TabLayout tabLayout;
     Context context;
     RecyclerView recyclerView;
     RecyclerView.Adapter adapter;
     RecyclerView.LayoutManager layoutManager;
-    String[] subjects;
-    ArrayList<String> listSubject;
+    ArrayList<Topic> listSubject;
     ArrayList<Integer> image_subs;
+    MyDatabase database;
     public DictionaryFragment() {
         // Required empty public constructor
     }
@@ -51,13 +51,12 @@ public class DictionaryFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_dictionary, container, false);
         context = getContext();
         context =getContext();
-        subjects =getResources().getStringArray(R.array.subject);
         recyclerView = view.findViewById(R.id.list_subject);
+        database = new MyDatabase(context);
         listSubject = new ArrayList<>();
         image_subs = ImageForSubject.imageId();
-        for(int i = 0;i<subjects.length;i++){
-            listSubject.add(subjects[i]);
-        }
+        // get subject from topic table
+        listSubject = database.getAllTopic();
         layoutManager =new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL,false);//false: theo thứ tự
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setHasFixedSize(true);

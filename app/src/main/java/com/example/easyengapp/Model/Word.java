@@ -4,16 +4,43 @@ public class Word {
     private int word_id;
     private String word;
     private String phonetic;
-    private String sinpleMeaning;
+    private String mean;
     private String value;
-//    private int topicId;
+    private Topic topic;
 
-    public Word(String word, String phonetic, String sinpleMeaning, String content) {
+    public Word() {
+    }
+
+    public Word(String word, String phonetic, String sinpleMeaning, String content, Topic topic) {
         this.word = word;
         this.phonetic = phonetic;
-        this.sinpleMeaning = sinpleMeaning;
+        this.mean = sinpleMeaning;
         this.value = content;
-//        this.topicId = topicId;
+        this.topic = topic;
+    }
+
+    public void setWord_id(int word_id) {
+        this.word_id = word_id;
+    }
+
+    public void setWord(String word) {
+        this.word = word;
+    }
+
+    public void setPhonetic(String phonetic) {
+        this.phonetic = phonetic;
+    }
+
+    public void setMean(String sinpleMeaning) {
+        this.mean = sinpleMeaning;
+    }
+
+    public void setValue(String value) {
+        this.value = value;
+    }
+
+    public void setTopic(Topic topic) {
+        this.topic = topic;
     }
 
     public int getWord_id() {
@@ -24,15 +51,13 @@ public class Word {
         return word;
     }
 
-
-
     public String getPhonetic() {
         return phonetic;
     }
 
 
-    public String getSinpleMeaning() {
-        return sinpleMeaning;
+    public String getMean() {
+        return mean;
     }
 
 
@@ -40,7 +65,7 @@ public class Word {
         return value;
     }
 
-//    public int getTopicId() {
-//        return topicId;
-//    }
+    public Topic getTopic() {
+        return topic;
+    }
 }

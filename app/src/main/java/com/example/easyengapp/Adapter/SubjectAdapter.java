@@ -15,16 +15,17 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.easyengapp.Activity.WordDictionary;
+import com.example.easyengapp.Model.Topic;
 import com.example.easyengapp.R;
 
 import java.util.ArrayList;
 
 public class SubjectAdapter extends RecyclerView.Adapter<SubjectAdapter.ViewHolder> {
-    private ArrayList<String> subjects;
+    private ArrayList<Topic> subjects;
     private ArrayList<Integer> image_subs;
     Context mContext;
 
-    public SubjectAdapter(Context context, ArrayList<String> subjects,ArrayList<Integer> image_subs) {
+    public SubjectAdapter(Context context, ArrayList<Topic> subjects,ArrayList<Integer> image_subs) {
         this.subjects = subjects;
        this.mContext = context;
        this.image_subs = image_subs;
@@ -51,8 +52,10 @@ public class SubjectAdapter extends RecyclerView.Adapter<SubjectAdapter.ViewHold
             public void onClick(View v) {
                 // xử lý phần hiển thị danh sách các từ trong chủ đề ở đây
                 Intent intent = new Intent(mContext, WordDictionary.class);
+                int idTopic = subjects.get(viewHolder.getAdapterPosition()).getTopicId();
+                intent.putExtra("IdTopic",idTopic);
                 mContext.startActivity(intent);
-                Toast.makeText(mContext,""+subjects.get(viewHolder.getAdapterPosition()),Toast.LENGTH_SHORT).show();
+                Toast.makeText(mContext,""+subjects.get(viewHolder.getAdapterPosition()).getTopicName(),Toast.LENGTH_SHORT).show();
             }
         });
         return viewHolder;
@@ -60,7 +63,7 @@ public class SubjectAdapter extends RecyclerView.Adapter<SubjectAdapter.ViewHold
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.tv_name_sub.setText(subjects.get(position));
+        holder.tv_name_sub.setText(subjects.get(position).getTopicName());
         holder.imageView.setImageResource(image_subs.get(position));
     }
 

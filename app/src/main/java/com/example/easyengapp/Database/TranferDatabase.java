@@ -7,6 +7,7 @@ import android.util.Log;
 
 import com.example.easyengapp.Model.KeyAndValue;
 import com.example.easyengapp.Model.Sentence;
+import com.example.easyengapp.Model.Topic;
 import com.example.easyengapp.Model.Word;
 import com.google.gson.internal.$Gson$Preconditions;
 import com.snappydb.DB;
@@ -43,7 +44,8 @@ public class TranferDatabase {
             putJsonFile("anhviet.json");
             putJsonFile("sentences.json");
             creatDBDictionary();
-            createDBSentences();
+//            createDBSentences();
+            createDBTopic();
             copyDataBase();
         }
     }
@@ -134,7 +136,7 @@ public class TranferDatabase {
             return new ArrayList<>();
         }
     }
-
+/*
     public Word findWord(String key) {
         KeyAndValue keyAndValue = findKeyAndValue(key).get(0);
         key =keyAndValue.getKey();
@@ -145,22 +147,29 @@ public class TranferDatabase {
         String content = new Reformat().ShowDetail(key,strings);
         return new Word(key,phonetic,mean,content);
     }
+ */
     private void creatDBDictionary(){
-        String line, key, phonetic, simpleMeaning, value, content;
+        String line, key,word, phonetic, simpleMeaning, value, content;
         try {
             AssetManager assetManager = mContext.getAssets();
-            BufferedReader bf = new BufferedReader(new InputStreamReader(assetManager.open("toeic.txt")));
+            BufferedReader bf = new BufferedReader(new InputStreamReader(assetManager.open("word_topic.txt")));
+//            int i = 0,tp=0;
             while((line = bf.readLine())!= null){
                 line = line.toLowerCase().trim();
-                if(findKeyAndValue(line).size()>0) {
-                    KeyAndValue keyAndValue = findKeyAndValue(line).get(0);
+                int tp = Integer.parseInt(line.split("-")[0].trim());
+                Log.d("TAG", "creatDBDictionary2: tp = "+tp);
+                word = line.split("-")[1].trim();
+                if(findKeyAndValue(word).size()>0) {
+                    KeyAndValue keyAndValue = findKeyAndValue(word).get(0);
                     key = keyAndValue.getKey();
                     value = keyAndValue.getValue();
                     ArrayList<String> strings = new Reformat_word().spilit(value);
                     phonetic = new Reformat_word().getPhonetic(strings);
                     simpleMeaning = new Reformat_word().getSimpleMeaning(strings);
                     content = new Reformat_word().toViewFormat(key, strings);
-                    myDatabase.addWord(new Word(key, phonetic, simpleMeaning, content));
+                    Topic topic = myDatabase.getTopicById(tp);
+                    if(topic == null) Log.d("TAG", "creatDBDictionary2: topic null");
+                    myDatabase.addWord(new Word(key, phonetic, simpleMeaning, content,topic));
                 } else {
                     Log.e("Loi", line);
                 }
@@ -169,6 +178,7 @@ public class TranferDatabase {
             Log.e("Loi_createDB", e.getMessage());
         }
     }
+    /*
     public void createDBSentences(){
         String line,key,value, mean;
         try {
@@ -189,6 +199,21 @@ public class TranferDatabase {
             }
         } catch (Exception e){
             Log.e("Loi_createDB", e.getMessage());
+        }
+    }
+     */
+    public void createDBTopic(){
+        String line;
+        try {
+            AssetManager assetManager = mContext.getAssets();
+            BufferedReader bf = new BufferedReader(new InputStreamReader(assetManager.open("topic.txt")));
+            while ((line = bf.readLine())!=null){
+                line = line.trim();
+                Topic topic = new Topic(line);
+                myDatabase.addTopic(topic);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 }
