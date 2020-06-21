@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -18,7 +19,7 @@ import com.example.easyengapp.Database.MyDatabase;
 import com.example.easyengapp.Database.TranferDatabase;
 import com.example.easyengapp.Fragment.DictionaryFragment;
 import com.example.easyengapp.Fragment.PracticeFragment;
-import com.example.easyengapp.Fragment.ProfileFagment;
+import com.example.easyengapp.Fragment.ProfileFragment;
 import com.example.easyengapp.R;
 import com.example.easyengapp.storage.SharePrefManager;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -78,7 +79,7 @@ public class MainActivity extends AppCompatActivity {
                             selectedFragment = new DictionaryFragment();
                             break;
                         case R.id.navigation_notifications:
-                            selectedFragment = new ProfileFagment();
+                            selectedFragment = new ProfileFragment();
                             break;
                     }
                     getSupportFragmentManager().beginTransaction().replace(R.id.frame_container, selectedFragment).commit();
@@ -110,7 +111,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void hideKeyboard(View view) {
-        InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(Activity.INPUT_METHOD_SERVICE);
-        inputMethodManager.hideSoftInputFromWindow(view.getWindowToken(), 0);
+        InputMethodManager inputMethodManager = null;
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.CUPCAKE) {
+            inputMethodManager = (InputMethodManager) getSystemService(Activity.INPUT_METHOD_SERVICE);
+        }
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.CUPCAKE) {
+            inputMethodManager.hideSoftInputFromWindow(view.getWindowToken(), 0);
+        }
     }
 }

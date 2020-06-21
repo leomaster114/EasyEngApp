@@ -21,6 +21,20 @@ public class SharePrefManager {
         return mInstance;
     }
 
+    // save Notification Time
+    public String getRemindTime(){
+        SharedPreferences sharedPreferences = mContext.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
+        return sharedPreferences.getString("remind_time", "09:00");
+    }
+
+    public void saveRemindTime(String remindTime){
+        SharedPreferences sharedPreferences = mContext.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+
+        editor.putString("remind_time", remindTime);
+        editor.apply();
+    }
+
     // lưu user vào sharedpref để k phải đăng nhập lại
     public void saveUser(User user) {
         SharedPreferences sharedPreferences = mContext.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);

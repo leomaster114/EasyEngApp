@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Fragment.ProfileFagment">
+    tools:context=".Fragment.ProfileFragment">
 
     <!-- TODO: Update blank fragment layout -->
     <ScrollView
@@ -138,6 +138,19 @@
                 android:textSize="16sp" />
 
             <Button
+                android:id="@+id/btnUpdateInfor"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="#FFF"
+                android:gravity="center"
+                android:layout_marginTop="20dp"
+                android:text="Lưu thông tin cá nhân"
+                android:textColor="#8D2BAC"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <Button
                 android:id="@+id/btnShareResult"
                 android:layout_width="200dp"
                 android:layout_height="40dp"
@@ -219,7 +232,7 @@
                     android:textStyle="bold" />
 
                 <Button
-                    android:id="@+id/btnRemindTime"
+                    android:id="@+id/btnRemind"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
