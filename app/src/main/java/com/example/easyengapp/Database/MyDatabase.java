@@ -198,12 +198,12 @@ public class MyDatabase extends SQLiteOpenHelper {
         db.close();
         return arrTopic;
     }
-    //get All topic
+    //get topic by id
     public Topic getTopicById(int id){
         SQLiteDatabase db = getReadableDatabase();
         String query = "select tp.topicId, tp.topic_name from topic_table as tp where tp.topicId = ?";
         Cursor cursor = db.rawQuery(query, new String[]{String.valueOf(id)});
-        Log.d(TAG, "getTopicById: cursor count "+cursor.getCount());
+        Log.d(TAG, "getTopicById:"+id+" cursor count "+cursor.getCount());
         Log.d(TAG, "getTopicById: movetofirst"+(cursor.moveToFirst() == true));
 
         if (cursor.moveToFirst()) {

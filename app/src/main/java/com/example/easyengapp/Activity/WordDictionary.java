@@ -9,6 +9,7 @@ import android.os.Bundle;
 
 import com.example.easyengapp.Adapter.RecycleViewWordAdapter;
 import com.example.easyengapp.Database.MyDatabase;
+import com.example.easyengapp.Model.Topic;
 import com.example.easyengapp.Model.Word;
 import com.example.easyengapp.R;
 
@@ -35,9 +36,9 @@ public class WordDictionary extends AppCompatActivity {
     }
     public void showToeic() {
         arrWords = database.getWordTopicByid(idTopic);
-//        arrWords = database.getWord("word_table");
+        Topic topic  = database.getTopicById(idTopic);
         Collections.reverse(arrWords);
-        getSupportActionBar().setSubtitle(String.valueOf(arrWords.size()));
+        getSupportActionBar().setSubtitle(topic.getTopicName());
         recyclerViewListWord.setAdapter(new RecycleViewWordAdapter(this, arrWords,"word_table"));
     }
 }

@@ -43,9 +43,9 @@ public class TranferDatabase {
             putJsonFile("vietanh.json");
             putJsonFile("anhviet.json");
             putJsonFile("sentences.json");
+            createDBTopic();
             creatDBDictionary();
 //            createDBSentences();
-            createDBTopic();
             copyDataBase();
         }
     }
