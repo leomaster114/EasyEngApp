@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/parent_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:layout_margin="16dp"
+    android:background="#FFF"
+    tools:context=".Activity.PracticeActivity">
+    <LinearLayout
+        android:layout_weight="1"
+        android:background="#FFF"
+        android:layout_width="match_parent"
+        android:layout_height="30dp">
+        <ImageButton
+            android:id="@+id/btn_cancel"
+            android:src="@drawable/ic_action_cancle"
+            android:background="#FFF"
+            android:layout_gravity="center_vertical"
+            android:layout_width="50dp"
+            android:layout_height="50dp"/>
+
+        <ProgressBar
+            style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="16dp"
+            android:id="@+id/progress"
+            android:progressDrawable="@drawable/custom_progessbar"
+           android:layout_gravity="center_vertical"
+            android:max="100"
+            android:progress="0"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#FFF"
+        android:gravity="center"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:paddingVertical="20dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Sắp xếp các ký tự thành từ có nghĩa là:"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/txt_meaning"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="16dp"
+            android:text="Học viện"
+            android:textColor="#000"
+            android:textSize="22sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/layout_result"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:gravity="center"
+        android:layout_weight="1"
+        android:paddingHorizontal="16dp"
+        android:visibility="gone">
+
+        <TextView
+            android:id="@+id/tv_result"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="#2196F3"
+            android:paddingHorizontal="10dp"
+            android:paddingVertical="5dp"
+            android:text="Kết quả"
+            android:textColor="#FFF"
+            android:textSize="24sp" />
+    </LinearLayout>
+
+    <com.nex3z.flowlayout.FlowLayout
+        android:id="@+id/layout_fill_answer"
+        android:paddingHorizontal="16dp"
+        android:gravity="center"
+        android:layout_weight="3"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="150dp" >
+
+    </com.nex3z.flowlayout.FlowLayout>
+    <com.nex3z.flowlayout.FlowLayout
+        android:id="@+id/layout_choose"
+        android:paddingHorizontal="16dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_weight="3"
+        android:layout_height="150dp" >
+    </com.nex3z.flowlayout.FlowLayout>
+    <LinearLayout
+        android:layout_marginTop="16dp"
+        android:orientation="vertical"
+        android:layout_weight="1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/tv_notify"
+            android:text="Đáp án đúng"
+            android:gravity="center"
+            android:textSize="24sp"
+            android:textColor="#FFF"
+            android:textStyle="bold"
+            android:visibility="gone"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"/>
+        <Button
+            android:id="@+id/btn_check"
+            android:text="Kiểm tra"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"/>
+        <Button
+            android:id="@+id/btn_continue"
+            android:text="Tiếp tục"
+            android:visibility="gone"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"/>
+    </LinearLayout>
+</LinearLayout>

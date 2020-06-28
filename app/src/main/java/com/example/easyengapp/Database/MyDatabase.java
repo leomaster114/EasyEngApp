@@ -274,4 +274,32 @@ public class MyDatabase extends SQLiteOpenHelper {
         db.close();
         return arrsentences;
     }
+    // lấy danh sách các từ trong chủ đề ra
+    public ArrayList<Sentence> getSentenceTopicByid(int idTopic) {
+        ArrayList<Sentence> arrSentence = new ArrayList<>();
+        SQLiteDatabase db = getReadableDatabase();
+        String query = "select s.sentence_id,s.sentence_content,s.sentence_mean, tp.topicId, tp.topic_name from sentence_table as s, topic_table as tp " +
+                "where s.topicId = tp.topicId and tp.topicId = ?";
+        String[] Args = new String[]{String.valueOf(idTopic)};
+        Cursor cursor = db.rawQuery(query, Args);
+        if (cursor.moveToFirst()) {
+            do {
+               Sentence s = new Sentence();
+                Topic topic = new Topic();
+               s.setSentence_id(cursor.getInt(0));
+                s.setContent(cursor.getString(1));
+                s.setMean(cursor.getString(2));
+
+                //
+                topic.setTopicId(cursor.getInt(3));
+                topic.setTopicName(cursor.getString(4));
+                //
+                s.setTopic(topic);
+               arrSentence.add(s);
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
+        db.close();
+        return arrSentence;
+    }
 }

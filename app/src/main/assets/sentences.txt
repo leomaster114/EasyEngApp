@@ -1,14 +1,145 @@
-an apple
-I eat an apple
-He is a boy
-He is a man and I am a boy
-She is a girl and I am a boy
-He drink water
-I eat and drink
-He eat bread
-He goes to school
-He learns Math
-My name is Hoa
-I have a bike
+1-my mother eat an apple
+1-my father drink water
+1-my aunt will visit me in the new year
+1-would you marry me?
+1-Selena and Sally are twin sisters
+1-he has a 3-year-old son named Timmy
+1-Jake’s uncle is a famous MC
+1-my father is a farmer
+1-i have two brother
+1-my father is a kind and generous man
+2-Please knock on the door before coming in
+2-He fell off the stairs and broke his arm
+2-i am in the kitchen
+2-my mom in the living room
+2-my house was build in 1990
+2-please open the door
+2-my room in the 3th floor
+2-my yard very large
+2-there are many tree in the garden
+2-a bird outside window
+3-We went to the park to play baseball.
+3-France is the World Cup 2018 Champion.
+3-Every competition has its winner and loser.
+3-We’ve just had a very good game of chess
+3-He is a sporty boy. He loves sport.
+3-i like play football
+3-i play badminton very well
+3-Messi is best player in the world
+3-baseketball is hard to play
+3-football is famous in VietNam
+4-Their arrival is later than the schedule 30 minutes.
+4-The 5-year-old boy started to learn how to ride a bike.
+4-Let’s go on a trip on grandpa’s boat!
+4-There is a bus stop right out of my house.
+4-I booked a Grab car to go to work.
+4-The heavy rain puts off our plane’s departure.
+4-I drove my mom to the supermarket yesterday.
+4-Get on the bus! We are leaving in 5 minutes.
+4-Motorbike is the most common vehicle in Vietnam.
+4-This filght has 285 passengers.
+5-There is a bus stop just around the corner.
+5-They are going to a café to meet some friends.
+5-I’m a town dweller.
+5-Where is the nearest gas station?
+5-We have to stay at this hotel for 3 nights.
+5-The road is blocked for construction.
+5-This street is full of stores.
+5-Kim’s favorite supermarket is VinMart.
+5-my house nears two supermarket
+5-Ha Noi is capital of VietNam
+6-Medical students have to be good at Biology.
+6-There are 30 students in a regular class in Vietnam.
+6-Computer science is a new subject this semester.
+6-He has a degree in External Economics.
+6-I have just lost my eraser at school.
+6-To learn is to grow.I forgot my pen.
+6-Can I borrow one from you?
+6-Use pencil only in this exam.
+6-Physics is an applicable science.
+6-Ruler is used to measure things.
+6-A school year consists of 2 semesters.
+7-Your dress is so beautiful
+7-It seems this shirt doesn't suit me.
+7-This dress is designed by Victoria Beckham
+7-That pants are very suitable for the shirt you are wearing.
+7-She’s always very well dressed.
+7-That shirt is 50% off.
+7-My boss wants all staff to wear uniforms.
+7-I always follow the latest fashion trends.
+7-This scarf looks very attractive.
+7-This shirt has a very nice design.
+8-The sun raises in the east.
+8-The Earth is 152.07 million kilometers from the sun
+8-The phone was invented in 1876
+8-One kilogram is equal to one thousand grams
+8-Lithium is the lightest metal.
+8-Neil Armstrong is the first man to set foot on the moon.
+8-In the past, people believed that the Earth was flat.
+8-Science is an interesting subject!
+8-Albert Einstein is a great scientist.
+8-Dinosaurs went extinct 65 million years ago.
+9-He works in a software company.
+9-I arrived 30 minutes late for the meeting.
+9-They are my colleagues.
+9-This work is very boring.
+9-I have to finish my task before tomorrow.
+9-My father retired after 30 years working for the government.
+9-Our company has signed a big contract.
+9-Can you show me the quarterly budget report?
+9-He is very careful at work.
+9-She works at google
+10-Hoang Sa and Truong Sa belongs to Vietnam
+10-I think Donald Trump will be re-elected as US president.
+10-The UK will officially leave the EU on 1st January 2021.
+10-The trade war between the US and China is not over.
+10-The US lost the Vietnam War.": "Hoa Kỳ đã thua cuộc chiến tranh Việt Nam.
+10-Protests took place in Hong Kong to protest the extradition bill from China.
+10-Black lives matter
+10-Say no to racism.
+10-Crimea returned to Russia in 2014.
+10-NATO opposes Turkey's purchase of Russian weapons.
+11-The Renaissance period originated in Italy in the 15th century.
+11-Tango is a famous Argentine dance.
+11-Adele is a singer with a powerful voice.
+11-The Mona Lisa was painted by Leonardo da Vinci in the early 16th century.
+11-Despasito is the most popular video in youtube with 6.8 billion views
+11-Waka Waka is considered the best world cup song.
+11-Avengers: Endgame has become the best-selling movie of all time.
+11-I love you three thousand
+11-I am a believer of cinema.
+11-The parasite movie won four oscar awards in 2020.
+12-Hospital A is highly rated for cancer treatment.
+12-Medicine is constantly growing.
+12-Covid-19 is spreading rapidly all over the world.
+12-You should see a doctor every 6 months.
+12-Today, family doctor services are increasingly popular.
+12-You should pay more attention to your health.
+12-Due to drinking too much cold water, I had a sore throat.
+12-In an emergency, call 115.
+12-The doctor advised me not to eat sweets.
+12-In Switzerland, Healthcare and education are free.
+9 -an apple
+9 -I eat an apple
+12 -He is a boy
+12 -He is a man and I am a boy
+12-She is a girl and I am a boy
+12-He drink water
+12-I eat and drink
+6-He eat bread
+6-He goes to school
+6-He learns Math
+7-My name is Hoa
+8-I have a bike
+9-I have a bike
+10-I have a bike
+7-I have a bike
+8-I have a bike
+9-I have a bike
+10-I have a bike
+7-I have a bike
+8-I have a bike
+9-I have a bike
+10-I have a bike
 
 

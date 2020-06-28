@@ -5,6 +5,7 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,6 +19,8 @@ import com.example.easyengapp.R;
  */
 public class PracticeFragment extends Fragment {
     Context mContext;
+    private String TAG = getClass().getSimpleName();
+
     public PracticeFragment() {
         // Required empty public constructor
     }
@@ -31,5 +34,8 @@ public class PracticeFragment extends Fragment {
         mContext = getContext();
         Toast.makeText(mContext,"Practice Fragment",Toast.LENGTH_SHORT).show();
         return view;
+    }
+    public void show_practice(View view){
+
     }
 }

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/background_dialog"
+    android:layout_gravity="center_vertical"
+    android:orientation="vertical"
+    android:layout_marginHorizontal="16dp">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Kết quả làm bài"
+        android:textSize="20sp"
+        android:textColor="#000"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="16dp"
+        android:textStyle="bold"/>
+
+    <TextView
+        android:id="@+id/tv_ketqua"
+        android:textStyle="bold"
+        android:text="Chúc mừng bạn đã vượt qua mức 2"
+        android:textColor="#000"
+        android:gravity="center"
+        android:textSize="16sp"
+        android:layout_marginHorizontal="16dp"
+        android:layout_gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_marginTop="30dp" />
+
+    <TextView
+        android:id="@+id/txt_total"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="#747474"
+        android:layout_marginTop="50dp"
+        android:layout_marginStart="16dp"
+        android:text="Tổng số câu đã làm:"
+        android:textSize="18sp"/>
+    <TextView
+        android:id="@+id/txt_total_correct"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="#747474"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="16dp"
+        android:text="Số câu trả lời đúng:"
+        android:textSize="18sp"/>
+
+    <Button
+        android:id="@+id/btn_ok"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:layout_gravity="bottom|right"
+        android:textSize="18sp"
+        android:layout_marginTop="30dp"
+        android:textStyle="bold"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/background_btn_gray_corner"
+        android:text="ok"/>
+</LinearLayout>

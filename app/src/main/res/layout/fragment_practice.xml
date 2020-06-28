@@ -23,12 +23,14 @@
                 android:orientation="vertical">
 
                 <LinearLayout
-                    android:id="@+id/level1_line1"
-                    android:layout_width="match_parent"
+                    android:id="@+id/tp1"
+                    android:layout_width="wrap_content"
+                    android:layout_gravity="center_horizontal"
                     android:layout_height="0dp"
                     android:layout_marginTop="10dp"
                     android:layout_weight="1"
                     android:gravity="center"
+                    android:onClick="show_practice"
                     android:orientation="vertical">
 
                     <ImageView
@@ -58,35 +60,37 @@
                     android:orientation="horizontal">
 
                     <LinearLayout
-                        android:id="@+id/level1_lin2_1"
+                        android:id="@+id/tp2"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:gravity="center"
+                        android:onClick="show_practice"
                         android:orientation="vertical">
 
                         <ImageView
                             android:padding="10dp"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
+                            android:layout_width="80dp"
+                            android:layout_height="80dp"
                             android:background="@drawable/custom_round_imgview"
-                            android:src="@drawable/animal" />
+                            android:src="@drawable/house" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Animal"
+                            android:text="House"
                             android:textColor="#000"
                             android:textSize="24dp"
                             android:textStyle="bold" />
                     </LinearLayout>
 
                     <LinearLayout
-                        android:id="@+id/level1_lin2_2"
+                        android:id="@+id/tp3"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:gravity="center"
+                        android:onClick="show_practice"
                         android:orientation="vertical">
 
                         <ImageView
@@ -94,12 +98,12 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:background="@drawable/custom_round_imgview"
-                            android:src="@drawable/nature" />
+                            android:src="@drawable/sport" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Nature"
+                            android:text="Sports"
                             android:textColor="#000"
                             android:textSize="24dp"
                             android:textStyle="bold" />
@@ -107,12 +111,14 @@
                 </LinearLayout>
 
                 <LinearLayout
-                    android:id="@+id/level1_line3"
-                    android:layout_width="match_parent"
+                    android:id="@+id/tp4"
+                    android:layout_width="wrap_content"
+                    android:layout_gravity="center_horizontal"
                     android:layout_height="0dp"
                     android:layout_marginTop="10dp"
                     android:layout_weight="1"
                     android:gravity="center"
+                    android:onClick="show_practice"
                     android:orientation="vertical">
 
                     <ImageView
@@ -120,12 +126,12 @@
                         android:layout_height="80dp"
                         android:padding="10dp"
                         android:background="@drawable/custom_round_imgview"
-                        android:src="@drawable/house" />
+                        android:src="@drawable/vehicle" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="House"
+                        android:text="Traffics"
                         android:textColor="#000"
                         android:textSize="24dp"
                         android:textStyle="bold" />
@@ -142,11 +148,12 @@
                     android:orientation="horizontal">
 
                     <LinearLayout
-                        android:id="@+id/level1_lin4_1"
+                        android:id="@+id/tp5"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:gravity="center"
+                        android:onClick="show_practice"
                         android:orientation="vertical">
 
                         <ImageView
@@ -154,23 +161,24 @@
                             android:layout_width="80dp"
                             android:layout_height="80dp"
                             android:background="@drawable/custom_round_imgview"
-                            android:src="@drawable/travel" />
+                            android:src="@drawable/city" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Travel"
+                            android:text="City"
                             android:textColor="#000"
                             android:textSize="24dp"
                             android:textStyle="bold" />
                     </LinearLayout>
 
                     <LinearLayout
-                        android:id="@+id/level1_lin4_2"
+                        android:id="@+id/tp6"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:gravity="center"
+                        android:onClick="show_practice"
                         android:orientation="vertical">
 
                         <ImageView
@@ -178,12 +186,12 @@
                             android:layout_width="80dp"
                             android:layout_height="80dp"
                             android:background="@drawable/custom_round_imgview"
-                            android:src="@drawable/social" />
+                            android:src="@drawable/education" />
 
                         <TextView
                             android:layout_width="81dp"
                             android:layout_height="wrap_content"
-                            android:text="Social"
+                            android:text="School"
                             android:textColor="#000"
                             android:textSize="24dp"
                             android:textStyle="bold" />
@@ -220,12 +228,14 @@
                 android:orientation="vertical">
 
                 <LinearLayout
-                    android:id="@+id/level2_line1"
-                    android:layout_width="match_parent"
+                    android:id="@+id/tp7"
+                    android:layout_width="wrap_content"
+                    android:layout_gravity="center_horizontal"
                     android:layout_height="0dp"
                     android:layout_marginTop="10dp"
                     android:layout_weight="1"
                     android:gravity="center"
+                    android:onClick="show_practice"
                     android:orientation="vertical">
 
                     <ImageView
@@ -233,19 +243,19 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:background="@drawable/custom_round_imgview"
-                        android:src="@drawable/family" />
+                        android:src="@drawable/animal" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Google"
+                        android:text="Animal"
                         android:textColor="#000"
                         android:textSize="24dp"
                         android:textStyle="bold" />
                 </LinearLayout>
 
                 <LinearLayout
-                    android:id="@+id/level2_line2"
+
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_marginLeft="30dp"
@@ -255,11 +265,12 @@
                     android:orientation="horizontal">
 
                     <LinearLayout
-                        android:id="@+id/level2_lin2_1"
+                        android:id="@+id/tp8"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:gravity="center"
+                        android:onClick="show_practice"
                         android:orientation="vertical">
 
                         <ImageView
@@ -267,23 +278,24 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:background="@drawable/custom_round_imgview"
-                            android:src="@drawable/animal" />
+                            android:src="@drawable/nature" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Google"
+                            android:text="Trees"
                             android:textColor="#000"
                             android:textSize="24dp"
                             android:textStyle="bold" />
                     </LinearLayout>
 
                     <LinearLayout
-                        android:id="@+id/level2_lin2_2"
+                        android:id="@+id/tp9"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:gravity="center"
+                        android:onClick="show_practice"
                         android:orientation="vertical">
 
                         <ImageView
@@ -291,12 +303,12 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:background="@drawable/custom_round_imgview"
-                            android:src="@drawable/family" />
+                            android:src="@drawable/fruits" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Google"
+                            android:text="Fruits"
                             android:textColor="#000"
                             android:textSize="24dp"
                             android:textStyle="bold" />
@@ -304,12 +316,14 @@
                 </LinearLayout>
 
                 <LinearLayout
-                    android:id="@+id/level2_line3"
-                    android:layout_width="match_parent"
+                    android:id="@+id/tp10"
+                    android:layout_width="wrap_content"
+                    android:layout_gravity="center_horizontal"
                     android:layout_height="0dp"
                     android:layout_marginTop="10dp"
                     android:layout_weight="1"
                     android:gravity="center"
+                    android:onClick="show_practice"
                     android:orientation="vertical">
 
                     <ImageView
@@ -317,12 +331,12 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:background="@drawable/custom_round_imgview"
-                        android:src="@drawable/house" />
+                        android:src="@drawable/travel" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Google"
+                        android:text="Travels"
                         android:textColor="#000"
                         android:textSize="24dp"
                         android:textStyle="bold" />
@@ -339,11 +353,12 @@
                     android:orientation="horizontal">
 
                     <LinearLayout
-                        android:id="@+id/level2_lin4_1"
+                        android:id="@+id/tp11"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:gravity="center"
+                        android:onClick="show_practice"
                         android:orientation="vertical">
 
                         <ImageView
@@ -351,23 +366,24 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:background="@drawable/custom_round_imgview"
-                            android:src="@drawable/logogg" />
+                            android:src="@drawable/times" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Google"
+                            android:text="Times"
                             android:textColor="#000"
                             android:textSize="24dp"
                             android:textStyle="bold" />
                     </LinearLayout>
 
                     <LinearLayout
-                        android:id="@+id/level2_lin4_2"
+                        android:id="@+id/tp12"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:gravity="center"
+                        android:onClick="show_practice"
                         android:orientation="vertical">
 
                         <ImageView
@@ -375,12 +391,12 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:background="@drawable/custom_round_imgview"
-                            android:src="@drawable/logogg" />
+                            android:src="@drawable/human" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Google"
+                            android:text="Humans"
                             android:textColor="#000"
                             android:textSize="24dp"
                             android:textStyle="bold" />
@@ -418,12 +434,14 @@
                 android:orientation="vertical">
 
                 <LinearLayout
-                    android:id="@+id/level3_line1"
-                    android:layout_width="match_parent"
+                    android:id="@+id/tp13"
+                    android:layout_width="wrap_content"
+                    android:layout_gravity="center_horizontal"
                     android:layout_height="0dp"
                     android:layout_marginTop="10dp"
                     android:layout_weight="1"
                     android:gravity="center"
+                    android:onClick="show_practice"
                     android:orientation="vertical">
 
                     <ImageView
@@ -431,12 +449,12 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:background="@drawable/custom_round_imgview"
-                        android:src="@drawable/family" />
+                        android:src="@drawable/clothes" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Google"
+                        android:text="Clothes"
                         android:textColor="#000"
                         android:textSize="24dp"
                         android:textStyle="bold" />
@@ -453,11 +471,12 @@
                     android:orientation="horizontal">
 
                     <LinearLayout
-                        android:id="@+id/level3_lin2_1"
+                        android:id="@+id/tp14"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:gravity="center"
+                        android:onClick="show_practice"
                         android:orientation="vertical">
 
                         <ImageView
@@ -465,36 +484,37 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:background="@drawable/custom_round_imgview"
-                            android:src="@drawable/animal" />
+                            android:src="@drawable/scient" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Google"
+                            android:text="Scients"
                             android:textColor="#000"
                             android:textSize="24dp"
                             android:textStyle="bold" />
                     </LinearLayout>
 
                     <LinearLayout
-                        android:id="@+id/level3_lin2_2"
+                        android:id="@+id/tp15"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:gravity="center"
+                        android:onClick="show_practice"
                         android:orientation="vertical">
 
                         <ImageView
                             android:padding="10dp"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
+                            android:layout_width="80dp"
+                            android:layout_height="80dp"
                             android:background="@drawable/custom_round_imgview"
-                            android:src="@drawable/family" />
+                            android:src="@drawable/jobs" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Google"
+                            android:text="Jobs"
                             android:textColor="#000"
                             android:textSize="24dp"
                             android:textStyle="bold" />
@@ -502,12 +522,14 @@
                 </LinearLayout>
 
                 <LinearLayout
-                    android:id="@+id/level3_line3"
-                    android:layout_width="match_parent"
+                    android:id="@+id/tp16"
+                    android:layout_width="wrap_content"
+                    android:layout_gravity="center_horizontal"
                     android:layout_height="0dp"
                     android:layout_marginTop="10dp"
                     android:layout_weight="1"
                     android:gravity="center"
+                    android:onClick="show_practice"
                     android:orientation="vertical">
 
                     <ImageView
@@ -515,12 +537,12 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:background="@drawable/custom_round_imgview"
-                        android:src="@drawable/house" />
+                        android:src="@drawable/politic" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Google"
+                        android:text="Politic"
                         android:textColor="#000"
                         android:textSize="24dp"
                         android:textStyle="bold" />
@@ -537,11 +559,12 @@
                     android:orientation="horizontal">
 
                     <LinearLayout
-                        android:id="@+id/level3_lin4_1"
+                        android:id="@+id/tp17"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:gravity="center"
+                        android:onClick="show_practice"
                         android:orientation="vertical">
 
                         <ImageView
@@ -549,23 +572,24 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:background="@drawable/custom_round_imgview"
-                            android:src="@drawable/logogg" />
+                            android:src="@drawable/arts" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Google"
+                            android:text="Art"
                             android:textColor="#000"
                             android:textSize="24dp"
                             android:textStyle="bold" />
                     </LinearLayout>
 
                     <LinearLayout
-                        android:id="@+id/level3_lin4_2"
+                        android:id="@+id/tp18"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:gravity="center"
+                        android:onClick="show_practice"
                         android:orientation="vertical">
 
                         <ImageView
@@ -573,12 +597,12 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:background="@drawable/custom_round_imgview"
-                            android:src="@drawable/logogg" />
+                            android:src="@drawable/medical" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Google"
+                            android:text="Medical"
                             android:textColor="#000"
                             android:textSize="24dp"
                             android:textStyle="bold" />

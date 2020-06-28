@@ -45,7 +45,7 @@ public class TranferDatabase {
             putJsonFile("sentences.json");
             createDBTopic();
             creatDBDictionary();
-//            createDBSentences();
+            createDBSentences();
             copyDataBase();
         }
     }
@@ -88,12 +88,12 @@ public class TranferDatabase {
                 if (line.length() == 1) continue;
                 reString = line.split(":", 2);
                 if (reString.length > 1) {
-                    key = reString[0].substring(1, reString[0].length() - 1);
+                    key = reString[0].substring(1, reString[0].length() - 1).toLowerCase();
                     if (reString[1].length() > 2) {
                         if (reString[1].charAt(reString[1].length() - 1) == ',') {
-                            value = reString[1].substring(2, reString[1].length() - 2);
+                            value = reString[1].substring(2, reString[1].length() - 2).toLowerCase();
                         } else {
-                            value = reString[1].substring(2, reString[1].length() - 1);
+                            value = reString[1].substring(2, reString[1].length() - 1).toLowerCase();
                         }
                     } else {
                         value = "";
@@ -178,21 +178,24 @@ public class TranferDatabase {
             Log.e("Loi_createDB", e.getMessage());
         }
     }
-    /*
+
     public void createDBSentences(){
-        String line,key,value, mean;
+        String line,key,value,content;
         try {
             AssetManager assetManager = mContext.getAssets();
             BufferedReader bf = new BufferedReader(new InputStreamReader(assetManager.open("sentences.txt")));
             while((line = bf.readLine())!= null){
                 line = line.toLowerCase().trim();
-                if(findKeyAndValue(line).size()>0) {
-                    KeyAndValue keyAndValue = findKeyAndValue(line).get(0);
+                int tp = Integer.parseInt(line.split("-")[0].trim());
+                content = line.split("-")[1].trim();
+                if(findKeyAndValue(content).size()>0) {
+                    KeyAndValue keyAndValue = findKeyAndValue(content).get(0);
                     key = keyAndValue.getKey();
                     value = keyAndValue.getValue();
-                    ArrayList<String> strings = new Reformat_word().spilit(value);
+//                    ArrayList<String> strings = new Reformat_word().spilit(value);
 //                    mean = new Reformat().getMean(strings);
-                    myDatabase.addSentence(new Sentence(key,strings.get(0)));
+                    Topic topic = myDatabase.getTopicById(tp);
+                    myDatabase.addSentence(new Sentence(key,value,topic));
                 } else {
                     Log.e("Loi", line);
                 }
@@ -201,7 +204,7 @@ public class TranferDatabase {
             Log.e("Loi_createDB", e.getMessage());
         }
     }
-     */
+     
     public void createDBTopic(){
         String line;
         try {
