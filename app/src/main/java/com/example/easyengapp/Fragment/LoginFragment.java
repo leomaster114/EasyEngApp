@@ -2,11 +2,13 @@ package com.example.easyengapp.Fragment;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,6 +21,7 @@ import android.widget.Toast;
 
 import com.example.easyengapp.Activity.MainActivity;
 import com.example.easyengapp.Activity.RegisterActivity;
+import com.example.easyengapp.Model.UserReminderResponse;
 import com.example.easyengapp.R;
 import com.example.easyengapp.Retrofit.RetrofitClient;
 import com.example.easyengapp.Model.LoginResponse;
@@ -55,7 +58,7 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
         tv_dont_have_acc = view.findViewById(R.id.tv_donthave_acc);
         edt_username = view.findViewById(R.id.edt_username);
         edt_pass = view.findViewById(R.id.edt_password);
-    progressBar = view.findViewById(R.id.progressBar_login);
+        progressBar = view.findViewById(R.id.progressBar_login);
         btn_login.setOnClickListener(this);
         tv_forgetPass.setOnClickListener(this);
         tv_dont_have_acc.setOnClickListener(this);
@@ -158,5 +161,6 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
             }
         });
     }
+
 }
 

@@ -31,9 +31,12 @@ import androidx.fragment.app.Fragment;
 
 import com.example.easyengapp.Activity.RegisterActivity;
 import com.example.easyengapp.Activity.WelcomeActiviry;
+import com.example.easyengapp.Model.Reminder;
 import com.example.easyengapp.Model.UpdateAvatarResponse;
 import com.example.easyengapp.Model.UpdateUserResponse;
 import com.example.easyengapp.Model.User;
+import com.example.easyengapp.Model.UserReminderResponse;
+import com.example.easyengapp.Model.UserReminderUpdateResponse;
 import com.example.easyengapp.Notification.AlertReceiver;
 import com.example.easyengapp.R;
 import com.example.easyengapp.Retrofit.RetrofitClient;
@@ -73,6 +76,8 @@ public class ProfileFragment extends Fragment {
     Context mContext;
     GoogleSignInClient googleSignInClient;
 
+    Reminder reminder;
+
     int REQUEST_CODE_CAMERA = 123;
     int REQUEST_CODE_FOLDER = 456;
 
@@ -91,7 +96,7 @@ public class ProfileFragment extends Fragment {
         btnCamera = view.findViewById(R.id.btnCamera);
         btnFolder = view.findViewById(R.id.btnFolder);
         btnRemind = view.findViewById(R.id.btnRemind);
-        btnRemind.setText(SharePrefManager.getInstance(mContext).getRemindTime());
+        //btnRemind.setText(SharePrefManager.getInstance(mContext).getRemindTime());
         remindSwitch = view.findViewById(R.id.remindSwitch);
         imgViewAvatar = view.findViewById(R.id.imgViewAvatar);
         btnLogout = view.findViewById(R.id.btnLogout);
@@ -103,6 +108,9 @@ public class ProfileFragment extends Fragment {
         edtName.setText(user.getFullname());
         edtEmail.setText(user.getEmail());
         edtPass.setText(user.getPassword());
+        // get user's reminder information - Lam
+        getUserReminder();
+
         Picasso.with(mContext).load(Uri.parse(user.getAvatar())).into(imgViewAvatar);
         //logout
         googleSignInClient = RegisterActivity.signInClient;
@@ -162,11 +170,15 @@ public class ProfileFragment extends Fragment {
         remindSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
-                if(isChecked){
+                if (isChecked) {
                     btnRemind.setEnabled(true);
+                    reminder.setActive(true);
+                    updateReminder(reminder);
                     Toast.makeText(mContext, "Đã bật thông báo luyện tập.", Toast.LENGTH_SHORT).show();
-                }
-                else{
+                } else {
+                    btnRemind.setEnabled(false);
+                    reminder.setActive(false);
+                    updateReminder(reminder);
                     cancelAlarm();
                     Toast.makeText(mContext, "Đã tắt thông báo luyện tập.", Toast.LENGTH_SHORT).show();
                 }
@@ -178,8 +190,8 @@ public class ProfileFragment extends Fragment {
 
     private void setRemind() {
         final Calendar calendar = Calendar.getInstance();
-        int hour = calendar.get(Calendar.HOUR_OF_DAY);
-        int minute = calendar.get(Calendar.MINUTE);
+        int hour = getHour(reminder.getTime());
+        int minute = getMinute(reminder.getTime());
 
         TimePickerDialog timePickerDialog = new TimePickerDialog(
                 getActivity(),
@@ -193,7 +205,10 @@ public class ProfileFragment extends Fragment {
                         calendar.set(Calendar.MINUTE, i1);
                         calendar.set(Calendar.SECOND, 0);
                         btnRemind.setText(simpleDateFormat.format(calendar.getTime()));
-                        SharePrefManager.getInstance(mContext).saveRemindTime(btnRemind.getText().toString());
+                        // save user reminder
+                        reminder.setTime(btnRemind.getText().toString());
+                        updateReminder(reminder);
+                        // start alarm
                         startAlarm(calendar);
                         Toast.makeText(mContext, "Thông báo luyện tập đã được đặt.", Toast.LENGTH_SHORT).show();
                     }
@@ -331,6 +346,53 @@ public class ProfileFragment extends Fragment {
         });
     }
 
+    private void getUserReminder() {
+        String userId = SharePrefManager.getInstance(mContext).getUser().getId();
+        // Get Reminder of User
+        Call<UserReminderResponse> call = RetrofitClient.getInstance().getApi().getReminderByUser(userId);
+        call.enqueue(new Callback<UserReminderResponse>() {
+            @Override
+            public void onResponse(Call<UserReminderResponse> call, Response<UserReminderResponse> response) {
+                UserReminderResponse res = response.body();
+                if (res.isStatus()) {
+                    reminder = res.getReminder();
+                    Log.d("MSG - REMINDER TIME", reminder.getTime());
+                    btnRemind.setText(reminder.getTime());
+                    remindSwitch.setChecked(reminder.isActive());
+                } else {
+                    Toast.makeText(mContext, "Đã xảy ra lỗi!!", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<UserReminderResponse> call, Throwable t) {
+                Toast.makeText(mContext, t.getMessage(), Toast.LENGTH_LONG).show();
+            }
+        });
+    }
+
+    private void updateReminder(Reminder reminder) {
+        // update user Reminder
+        Call<UserReminderUpdateResponse> call = RetrofitClient.getInstance().getApi().updateReminder(reminder.getContent(),
+                reminder.getTime(), reminder.isActive(), reminder.getUser_id());
+        call.enqueue(new Callback<UserReminderUpdateResponse>() {
+            @Override
+            public void onResponse(Call<UserReminderUpdateResponse> call, Response<UserReminderUpdateResponse> response) {
+                UserReminderUpdateResponse res = response.body();
+                if (res.isStatus()) {
+                    Log.d("MSG", "UPDATE USER REMINDER SUCCESSFULLY!");
+                } else {
+                    Toast.makeText(mContext, "Đã xảy ra lỗi!!", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<UserReminderUpdateResponse> call, Throwable t) {
+                Toast.makeText(mContext, t.getMessage(), Toast.LENGTH_LONG).show();
+            }
+        });
+    }
+
     // Notification/ Alarm Handler
 
     private void startAlarm(Calendar c) {
@@ -348,7 +410,16 @@ public class ProfileFragment extends Fragment {
         Intent intent = new Intent(mContext, AlertReceiver.class);
         PendingIntent pendingIntent = PendingIntent.getBroadcast(mContext, 1, intent, 0);
         alarmManager.cancel(pendingIntent);
-        btnRemind.setText("Disabled");
-        btnRemind.setEnabled(false);
+    }
+
+    // get hour and minute from time(String)
+    private int getHour(String strTime) {
+        String[] arr = strTime.split(":", 3);
+        return Integer.parseInt(arr[0]);
+    }
+
+    private int getMinute(String strTime) {
+        String[] arr = strTime.split(":", 3);
+        return Integer.parseInt(arr[1]);
     }
 }
