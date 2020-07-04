@@ -192,6 +192,7 @@ public class TranferDatabase {
     }
 
     public void createDBSentences() {
+        myDatabase.deleteAllWord();
         String line, key, value, content;
         try {
             AssetManager assetManager = mContext.getAssets();
