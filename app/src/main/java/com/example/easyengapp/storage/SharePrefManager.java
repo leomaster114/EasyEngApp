@@ -21,19 +21,33 @@ public class SharePrefManager {
         return mInstance;
     }
 
-    // save Notification Time
-    public String getRemindTime(){
-        SharedPreferences sharedPreferences = mContext.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
-        return sharedPreferences.getString("remind_time", "09:00");
-    }
-
-    public void saveRemindTime(String remindTime){
-        SharedPreferences sharedPreferences = mContext.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-
-        editor.putString("remind_time", remindTime);
-        editor.apply();
-    }
+//    // save Notification Status: On or Off
+//    public boolean getRemindStatus() {
+//        SharedPreferences sharedPreferences = mContext.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
+//        return sharedPreferences.getBoolean("remind_status", true);
+//    }
+//
+//    public void saveReminderStatus(boolean status) {
+//        SharedPreferences sharedPreferences = mContext.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
+//        SharedPreferences.Editor editor = sharedPreferences.edit();
+//
+//        editor.putBoolean("remind_status", status);
+//        editor.apply();
+//    }
+//
+//    // save Notification Time
+//    public String getRemindTime() {
+//        SharedPreferences sharedPreferences = mContext.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
+//        return sharedPreferences.getString("remind_time", "09:00");
+//    }
+//
+//    public void saveRemindTime(String remindTime) {
+//        SharedPreferences sharedPreferences = mContext.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
+//        SharedPreferences.Editor editor = sharedPreferences.edit();
+//
+//        editor.putString("remind_time", remindTime);
+//        editor.apply();
+//    }
 
     // lưu user vào sharedpref để k phải đăng nhập lại
     public void saveUser(User user) {
@@ -45,7 +59,7 @@ public class SharePrefManager {
         editor.putString("password", user.getPassword());
         editor.putString("fullname", user.getFullname());
         editor.putString("email", user.getEmail());
-        editor.putString("avatar",user.getAvatar());
+        editor.putString("avatar", user.getAvatar());
 
         editor.apply();
     }
@@ -66,18 +80,21 @@ public class SharePrefManager {
                 sharedPreferences.getString("avatar", "null")
         );
     }
+
     // save isFirstTime run app
-    public void saveIsFirstTime(boolean isFirstTime){
+    public void saveIsFirstTime(boolean isFirstTime) {
         SharedPreferences sharedPreferences = mContext.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putBoolean("FistTime",isFirstTime);
+        editor.putBoolean("FistTime", isFirstTime);
         editor.apply();
     }
-    public boolean getFistTime(){
+
+    public boolean getFistTime() {
         SharedPreferences sharedPreferences = mContext.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
-        return sharedPreferences.getBoolean("FistTime",true);
+        return sharedPreferences.getBoolean("FistTime", true);
     }
-    public void clear(){
+
+    public void clear() {
         SharedPreferences sharedPreferences = mContext.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
 
