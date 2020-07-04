@@ -5,6 +5,8 @@ import com.example.easyengapp.Model.RegisterResponse;
 import com.example.easyengapp.Model.UpdateAvatarResponse;
 import com.example.easyengapp.Model.UpdateUserResponse;
 import com.example.easyengapp.Model.User;
+import com.example.easyengapp.Model.UserReminderResponse;
+import com.example.easyengapp.Model.UserReminderUpdateResponse;
 
 
 import java.util.List;
@@ -14,6 +16,7 @@ import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.Field;
+import retrofit2.http.FieldMap;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.Multipart;
@@ -21,6 +24,7 @@ import retrofit2.http.POST;
 import retrofit2.http.PUT;
 import retrofit2.http.Part;
 import retrofit2.http.Path;
+import retrofit2.http.Query;
 
 public interface api {
     @GET("users")
@@ -51,5 +55,19 @@ public interface api {
     Call<UpdateAvatarResponse> updateAvatar(
             @Path("id") String id,
             @Part MultipartBody.Part image
+    );
+
+    @GET("reminder/get-reminder-by-user")
+    Call<UserReminderResponse> getReminderByUser(
+            @Query("user_id") String user_id
+    );
+
+    @FormUrlEncoded
+    @PUT("reminder/update")
+    Call<UserReminderUpdateResponse> updateReminder(
+            @Field("content") String content,
+            @Field("time") String time,
+            @Field("active") boolean active,
+            @Field("user_id") String user_id
     );
 }
