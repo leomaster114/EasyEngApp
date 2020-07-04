@@ -14,6 +14,8 @@ import com.example.easyengapp.Model.TopicResponse;
 import com.example.easyengapp.Model.UpdateAvatarResponse;
 import com.example.easyengapp.Model.UpdateUserResponse;
 import com.example.easyengapp.Model.User;
+import com.example.easyengapp.Model.UserReminderResponse;
+import com.example.easyengapp.Model.UserReminderUpdateResponse;
 
 
 import java.util.List;
@@ -87,5 +89,17 @@ public interface api {
     Call<ResetPasswordResponse> resetPassword(
             @Field("email") String email
     );
+    @GET("reminder/get-reminder-by-user")
+    Call<UserReminderResponse> getReminderByUser(
+            @Query("user_id") String user_id
+    );
 
+    @FormUrlEncoded
+    @PUT("reminder/update")
+    Call<UserReminderUpdateResponse> updateReminder(
+            @Field("content") String content,
+            @Field("time") String time,
+            @Field("active") boolean active,
+            @Field("user_id") String user_id
+    );
 }
