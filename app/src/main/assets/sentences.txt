@@ -1,5 +1,5 @@
-1-my mother eat an apple
-1-my father drink water
+1-my mother eats an apple
+1-my father drinks water
 1-my aunt will visit me in the new year
 1-would you marry me?
 1-Selena and Sally are twin sisters
@@ -11,7 +11,7 @@
 2-Please knock on the door before coming in
 2-He fell off the stairs and broke his arm
 2-i am in the kitchen
-2-my mom in the living room
+2-my mom is in the living room
 2-my house was build in 1990
 2-please open the door
 2-my room in the 3th floor
@@ -53,93 +53,143 @@
 6-Computer science is a new subject this semester.
 6-He has a degree in External Economics.
 6-I have just lost my eraser at school.
-6-To learn is to grow.I forgot my pen.
+6-To learn is to grow.
+6-I forgot my pen.
 6-Can I borrow one from you?
 6-Use pencil only in this exam.
 6-Physics is an applicable science.
 6-Ruler is used to measure things.
 6-A school year consists of 2 semesters.
-7-Your dress is so beautiful
-7-It seems this shirt doesn't suit me.
-7-This dress is designed by Victoria Beckham
-7-That pants are very suitable for the shirt you are wearing.
-7-She’s always very well dressed.
-7-That shirt is 50% off.
-7-My boss wants all staff to wear uniforms.
-7-I always follow the latest fashion trends.
-7-This scarf looks very attractive.
-7-This shirt has a very nice design.
-8-The sun raises in the east.
-8-The Earth is 152.07 million kilometers from the sun
-8-The phone was invented in 1876
-8-One kilogram is equal to one thousand grams
-8-Lithium is the lightest metal.
-8-Neil Armstrong is the first man to set foot on the moon.
-8-In the past, people believed that the Earth was flat.
-8-Science is an interesting subject!
-8-Albert Einstein is a great scientist.
-8-Dinosaurs went extinct 65 million years ago.
-9-He works in a software company.
-9-I arrived 30 minutes late for the meeting.
-9-They are my colleagues.
-9-This work is very boring.
-9-I have to finish my task before tomorrow.
-9-My father retired after 30 years working for the government.
-9-Our company has signed a big contract.
-9-Can you show me the quarterly budget report?
-9-He is very careful at work.
-9-She works at google
-10-Hoang Sa and Truong Sa belongs to Vietnam
-10-I think Donald Trump will be re-elected as US president.
-10-The UK will officially leave the EU on 1st January 2021.
-10-The trade war between the US and China is not over.
-10-The US lost the Vietnam War.": "Hoa Kỳ đã thua cuộc chiến tranh Việt Nam.
-10-Protests took place in Hong Kong to protest the extradition bill from China.
-10-Black lives matter
-10-Say no to racism.
-10-Crimea returned to Russia in 2014.
-10-NATO opposes Turkey's purchase of Russian weapons.
-11-The Renaissance period originated in Italy in the 15th century.
-11-Tango is a famous Argentine dance.
-11-Adele is a singer with a powerful voice.
-11-The Mona Lisa was painted by Leonardo da Vinci in the early 16th century.
-11-Despasito is the most popular video in youtube with 6.8 billion views
-11-Waka Waka is considered the best world cup song.
-11-Avengers: Endgame has become the best-selling movie of all time.
-11-I love you three thousand
-11-I am a believer of cinema.
-11-The parasite movie won four oscar awards in 2020.
-12-Hospital A is highly rated for cancer treatment.
-12-Medicine is constantly growing.
-12-Covid-19 is spreading rapidly all over the world.
-12-You should see a doctor every 6 months.
-12-Today, family doctor services are increasingly popular.
-12-You should pay more attention to your health.
-12-Due to drinking too much cold water, I had a sore throat.
-12-In an emergency, call 115.
-12-The doctor advised me not to eat sweets.
-12-In Switzerland, Healthcare and education are free.
-9 -an apple
-9 -I eat an apple
+7-he is playing with his dog
+7-Goose is a kind of poultry
+7-Elk is a large deer
+7-An octopus has 8 legs
+7-A lamp is eaten by a wolf
+7-Goats give us their milk
+7-His farm is full of pigs
+7-Shark is animal species are at risk of extinction
+7-Rabbit lives in forest and eats carrots
+8-There is a coconut tree in my garden
+8-I really like cherry blossoms
+8-Cactus has lots of thorns on its body
+8-many species of deciduous trees in the winter
+8-Apple tree is a fruit tree
+8-plants help with air conditioning
+8-Many forest fires occur in Australia every year
+8-Royal poinciana blooms in the school yard
+8-Mangroves help prevent landslides and protect the soil
+8-Banyan trees have a very long service life
+9-I have a lemon
+9-Mango has an oval shape
+9-I really like eating apples
+9-Watermelon is my favorite fruit
+9-Banana has an acrid taste when it's still green
+9-His neighbor grew all kinds of fruits and vegetables
+9-I really like drinking orange juice
+9-I have never eaten durian
+9-Grapefruit is very popular in Vietnam
+9-Young plums are greenish-white
+10-Can you take me to the airport, please?
+10-Ha Long beach is a wonder of the world
+10-Vietnam has many attractive tourist destinations.
+10-I will travel to Tokyo next weekend 
+10-Many tourists return to Vietnam every year
+10-Vietnam has 7 wonders of the world
+10-I'm saving money to travel
+10-Vietnamese people are very enthusiastic with tourists
+10-I have made new friends while traveling
+10-I have a trip to Danang on the weekends
+11-good morning
+11-Time passes quickly
+11-I have a meeting at 8:30 am
+11-I returned home at 6:30 pm
+11-What time is it?
+11-Are you free on Thursday morning?
+11-What are your plans for the weekend?
+11-What time do you have lunch?
+11-The match has started 30 minutes
+11-I have a party overnight
+12-She looks so sexy
+12-They come from elsewhere
+12-They just got married last month
+12-He looks very manly
+12-My family has four people
+12-My brother is three years older than me
+12-She has brown eyes
+12-The Vietnamese people are very friendly
+12-the boy is sick
+12-I really love my parents
+13-Your dress is so beautiful
+13-It seems this shirt doesn't suit me.
+13-This dress is designed by Victoria Beckham
+13-That pants are very suitable for the shirt you are wearing.
+13-She’s always very well dressed.
+13-That shirt is 50% off.
+13-My boss wants all staff to wear uniforms.
+13-I always follow the latest fashion trends.
+13-This scarf looks very attractive.
+13-This shirt has a very nice design.
+14-The sun raises in the east.
+14-The Earth is 152.07 million kilometers from the sun
+14-The phone was invented in 1876
+14-One kilogram is equal to one thousand grams
+14-Lithium is the lightest metal.
+14-Neil Armstrong is the first man to set foot on the moon.
+14-In the past, people believed that the Earth was flat.
+14-Science is an interesting subject!
+14-Albert Einstein is a great scientist.
+14-Dinosaurs went extinct 65 million years ago.
+15-He works in a software company.
+15-I arrived 30 minutes late for the meeting.
+15-They are my colleagues.
+15-This work is very boring.
+15-I have to finish my task before tomorrow.
+15-My father retired after 30 years working for the government.
+15-Our company has signed a big contract.
+15-Can you show me the quarterly budget report?
+15-He is very careful at work.
+15-She works at google
+16-Hoang Sa and Truong Sa belongs to Vietnam
+16-I think Donald Trump will be re-elected as US president.
+16-The UK will officially leave the EU on 1st January 2021.
+16-The trade war between the US and China is not over.
+16-The US lost the Vietnam War.
+16-Protests took place in Hong Kong to protest the extradition bill from China.
+16-Black lives matter
+16-Say no to racism.
+16-Crimea returned to Russia in 2014.
+16-NATO opposes Turkey's purchase of Russian weapons.
+17-The Renaissance period originated in Italy in the 15th century.
+17-Tango is a famous Argentine dance.
+17-Adele is a singer with a powerful voice.
+17-The Mona Lisa was painted by Leonardo da Vinci in the early 16th century.
+17-Despasito is the most popular video in youtube with 6.8 billion views
+17-Waka Waka is considered the best world cup song.
+17-Avengers Endgame has become the best selling movie of all time.
+17-I love you three thousand
+17-I am a believer of cinema.
+17-The parasite movie won four oscar awards in 2020.
+18-Hospital A is highly rated for cancer treatment.
+18-Medicine is constantly growing.
+18-Covid-175 is spreading rapidly all over the world.
+18-You should see a doctor every 6 months.
+18-Today, family doctor services are increasingly popular.
+18-You should pay more attention to your health.
+18-Due to drinking too much cold water, I had a sore throat.
+18-In an emergency, call 175.
+18-The doctor advised me not to eat sweets.
+18-In Switzerland, Healthcare and education are free.
+15 -an apple
+15 -I eats an apple
 12 -He is a boy
 12 -He is a man and I am a boy
 12-She is a girl and I am a boy
-12-He drink water
+12-He drinks water
 12-I eat and drink
-6-He eat bread
+6-He eats bread
 6-He goes to school
 6-He learns Math
-7-My name is Hoa
-8-I have a bike
-9-I have a bike
-10-I have a bike
-7-I have a bike
-8-I have a bike
-9-I have a bike
-10-I have a bike
-7-I have a bike
-8-I have a bike
-9-I have a bike
-10-I have a bike
+13-My name is Hoa
+
 
 

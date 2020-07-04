@@ -118,7 +118,7 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
             edt_pass.requestFocus();
             return;
         }
-        if (pass.length() < 8) {
+        if (pass.length() < 6) {
             edt_pass.setError("Password should be atleast 6 character");
             edt_pass.setTextColor(Color.RED);
             edt_pass.requestFocus();

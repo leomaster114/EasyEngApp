@@ -34,6 +34,7 @@
                     android:orientation="vertical">
 
                     <ImageView
+                        android:id="@+id/img_tp1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:padding="10dp"
@@ -69,6 +70,7 @@
                         android:orientation="vertical">
 
                         <ImageView
+                            android:id="@+id/img_tp2"
                             android:padding="10dp"
                             android:layout_width="80dp"
                             android:layout_height="80dp"
@@ -94,6 +96,7 @@
                         android:orientation="vertical">
 
                         <ImageView
+                            android:id="@+id/img_tp3"
                             android:padding="10dp"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -122,6 +125,7 @@
                     android:orientation="vertical">
 
                     <ImageView
+                        android:id="@+id/img_tp4"
                         android:layout_width="80dp"
                         android:layout_height="80dp"
                         android:padding="10dp"
@@ -157,6 +161,7 @@
                         android:orientation="vertical">
 
                         <ImageView
+                            android:id="@+id/img_tp5"
                             android:padding="10dp"
                             android:layout_width="80dp"
                             android:layout_height="80dp"
@@ -182,6 +187,7 @@
                         android:orientation="vertical">
 
                         <ImageView
+                            android:id="@+id/img_tp6"
                             android:padding="10dp"
                             android:layout_width="80dp"
                             android:layout_height="80dp"
@@ -239,6 +245,7 @@
                     android:orientation="vertical">
 
                     <ImageView
+                        android:id="@+id/img_tp7"
                         android:padding="10dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -274,6 +281,7 @@
                         android:orientation="vertical">
 
                         <ImageView
+                            android:id="@+id/img_tp8"
                             android:padding="10dp"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -299,6 +307,7 @@
                         android:orientation="vertical">
 
                         <ImageView
+                            android:id="@+id/img_tp9"
                             android:padding="10dp"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -327,6 +336,7 @@
                     android:orientation="vertical">
 
                     <ImageView
+                        android:id="@+id/img_tp10"
                         android:padding="10dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -362,6 +372,7 @@
                         android:orientation="vertical">
 
                         <ImageView
+                            android:id="@+id/img_tp11"
                             android:padding="10dp"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -387,6 +398,7 @@
                         android:orientation="vertical">
 
                         <ImageView
+                            android:id="@+id/img_tp12"
                             android:padding="10dp"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -445,6 +457,7 @@
                     android:orientation="vertical">
 
                     <ImageView
+                        android:id="@+id/img_tp13"
                         android:padding="10dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -480,6 +493,7 @@
                         android:orientation="vertical">
 
                         <ImageView
+                            android:id="@+id/img_tp14"
                             android:padding="10dp"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -505,6 +519,7 @@
                         android:orientation="vertical">
 
                         <ImageView
+                            android:id="@+id/img_tp15"
                             android:padding="10dp"
                             android:layout_width="80dp"
                             android:layout_height="80dp"
@@ -533,6 +548,7 @@
                     android:orientation="vertical">
 
                     <ImageView
+                        android:id="@+id/img_tp16"
                         android:padding="10dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -568,6 +584,7 @@
                         android:orientation="vertical">
 
                         <ImageView
+                            android:id="@+id/img_tp17"
                             android:padding="10dp"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -593,6 +610,7 @@
                         android:orientation="vertical">
 
                         <ImageView
+                            android:id="@+id/img_tp18"
                             android:padding="10dp"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"

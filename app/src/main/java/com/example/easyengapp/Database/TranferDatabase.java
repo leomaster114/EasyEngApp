@@ -4,11 +4,15 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.content.res.AssetManager;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.example.easyengapp.Model.KeyAndValue;
 import com.example.easyengapp.Model.Sentence;
 import com.example.easyengapp.Model.Topic;
+import com.example.easyengapp.Model.TopicByIdResponse;
+import com.example.easyengapp.Model.TopicResponse;
 import com.example.easyengapp.Model.Word;
+import com.example.easyengapp.Retrofit.RetrofitClient;
 import com.google.gson.internal.$Gson$Preconditions;
 import com.snappydb.DB;
 import com.snappydb.DBFactory;
@@ -22,6 +26,10 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.util.ArrayList;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class TranferDatabase {
     private String dbName = "TransferDatabase";
@@ -123,7 +131,7 @@ public class TranferDatabase {
         }
     }
 
-    private ArrayList<KeyAndValue> findKeyAndValue(String key) {
+    public ArrayList<KeyAndValue> findKeyAndValue(String key) {
         try {
             ArrayList<KeyAndValue> arr = new ArrayList<>();
             String[] list = this.tranDb.findKeys(key);
@@ -136,30 +144,19 @@ public class TranferDatabase {
             return new ArrayList<>();
         }
     }
-/*
-    public Word findWord(String key) {
-        KeyAndValue keyAndValue = findKeyAndValue(key).get(0);
-        key =keyAndValue.getKey();
-        String value = keyAndValue.getValue();
-        ArrayList<String> strings =new Reformat().Split(value);
-        String phonetic = new Reformat().getPhonetic(strings);
-        String mean = new Reformat().getMean(strings);
-        String content = new Reformat().ShowDetail(key,strings);
-        return new Word(key,phonetic,mean,content);
-    }
- */
-    private void creatDBDictionary(){
-        String line, key,word, phonetic, simpleMeaning, value, content;
+
+    private void creatDBDictionary() {
+        myDatabase.deleteAllWord();
+        String line, key, word, phonetic, simpleMeaning, value, content;
         try {
             AssetManager assetManager = mContext.getAssets();
             BufferedReader bf = new BufferedReader(new InputStreamReader(assetManager.open("word_topic.txt")));
-//            int i = 0,tp=0;
-            while((line = bf.readLine())!= null){
+            while ((line = bf.readLine()) != null) {
                 line = line.toLowerCase().trim();
                 int tp = Integer.parseInt(line.split("-")[0].trim());
-                Log.d("TAG", "creatDBDictionary2: tp = "+tp);
+//                Log.d("TAG", "creatDBDictionary2: tp = "+tp);
                 word = line.split("-")[1].trim();
-                if(findKeyAndValue(word).size()>0) {
+                if (findKeyAndValue(word).size() > 0) {
                     KeyAndValue keyAndValue = findKeyAndValue(word).get(0);
                     key = keyAndValue.getKey();
                     value = keyAndValue.getValue();
@@ -167,56 +164,88 @@ public class TranferDatabase {
                     phonetic = new Reformat_word().getPhonetic(strings);
                     simpleMeaning = new Reformat_word().getSimpleMeaning(strings);
                     content = new Reformat_word().toViewFormat(key, strings);
-                    Topic topic = myDatabase.getTopicById(tp);
-                    if(topic == null) Log.d("TAG", "creatDBDictionary2: topic null");
-                    myDatabase.addWord(new Word(key, phonetic, simpleMeaning, content,topic));
+                    Call<TopicByIdResponse> call = RetrofitClient.getInstance().getApi().getTopicById(tp);
+                    final String finalKey = key;
+                    final String finalPhonetic = phonetic;
+                    final String finalSimpleMeaning = simpleMeaning;
+                    final String finalContent = content;
+                    call.enqueue(new Callback<TopicByIdResponse>() {
+                        @Override
+                        public void onResponse(Call<TopicByIdResponse> call, Response<TopicByIdResponse> response) {
+                            final Topic topic = response.body().getTopic();
+                            myDatabase.addWord(new Word(finalKey, finalPhonetic, finalSimpleMeaning, finalContent, topic));
+                        }
+
+                        @Override
+                        public void onFailure(Call<TopicByIdResponse> call, Throwable t) {
+                            Toast.makeText(mContext, t.getMessage(), Toast.LENGTH_SHORT).show();
+                        }
+                    });
+
                 } else {
                     Log.e("Loi", line);
                 }
             }
-        } catch (Exception e){
+        } catch (Exception e) {
             Log.e("Loi_createDB", e.getMessage());
         }
     }
 
-    public void createDBSentences(){
-        String line,key,value,content;
+    public void createDBSentences() {
+        String line, key, value, content;
         try {
             AssetManager assetManager = mContext.getAssets();
             BufferedReader bf = new BufferedReader(new InputStreamReader(assetManager.open("sentences.txt")));
-            while((line = bf.readLine())!= null){
+            while ((line = bf.readLine()) != null) {
                 line = line.toLowerCase().trim();
                 int tp = Integer.parseInt(line.split("-")[0].trim());
                 content = line.split("-")[1].trim();
-                if(findKeyAndValue(content).size()>0) {
+                if (findKeyAndValue(content).size() > 0) {
                     KeyAndValue keyAndValue = findKeyAndValue(content).get(0);
                     key = keyAndValue.getKey();
                     value = keyAndValue.getValue();
-//                    ArrayList<String> strings = new Reformat_word().spilit(value);
-//                    mean = new Reformat().getMean(strings);
-                    Topic topic = myDatabase.getTopicById(tp);
-                    myDatabase.addSentence(new Sentence(key,value,topic));
+
+                    Call<TopicByIdResponse> call = RetrofitClient.getInstance().getApi().getTopicById(tp);
+                    final String finalKey = key;
+                    final String finalValue = value;
+                    call.enqueue(new Callback<TopicByIdResponse>() {
+                        @Override
+                        public void onResponse(Call<TopicByIdResponse> call, Response<TopicByIdResponse> response) {
+                            final Topic topic = response.body().getTopic();
+                            myDatabase.addSentence(new Sentence(finalKey, finalValue, topic));
+                        }
+
+                        @Override
+                        public void onFailure(Call<TopicByIdResponse> call, Throwable t) {
+                            Toast.makeText(mContext, t.getMessage(), Toast.LENGTH_SHORT).show();
+                        }
+                    });
                 } else {
                     Log.e("Loi", line);
                 }
             }
-        } catch (Exception e){
+        } catch (Exception e) {
             Log.e("Loi_createDB", e.getMessage());
         }
     }
-     
-    public void createDBTopic(){
-        String line;
-        try {
-            AssetManager assetManager = mContext.getAssets();
-            BufferedReader bf = new BufferedReader(new InputStreamReader(assetManager.open("topic.txt")));
-            while ((line = bf.readLine())!=null){
-                line = line.trim();
-                Topic topic = new Topic(line);
-                myDatabase.addTopic(topic);
+
+    public void createDBTopic() {
+
+        Call<TopicResponse> call = RetrofitClient.getInstance().getApi().getAllTopic();
+        call.enqueue(new Callback<TopicResponse>() {
+            @Override
+            public void onResponse(Call<TopicResponse> call, Response<TopicResponse> response) {
+                ArrayList<Topic> topics = (ArrayList<Topic>) response.body().getTopics();
+                for (Topic topic : topics) {
+                    myDatabase.addTopic(topic);
+                }
             }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+
+            @Override
+            public void onFailure(Call<TopicResponse> call, Throwable t) {
+                Toast.makeText(mContext, t.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+
     }
 }

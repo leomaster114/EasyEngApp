@@ -26,19 +26,28 @@
             android:textSize="32sp"
             android:textStyle="bold" />
 
-        <EditText
-            android:id="@+id/edt_search"
+        <LinearLayout
+            android:id="@+id/search_view"
             android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:layout_marginLeft="16dp"
-            android:layout_marginRight="16dp"
-            android:background="@drawable/edt_custom"
-            android:drawableLeft="@drawable/ic_btn_search"
-            android:hint="Tìm kiếm"
-            android:gravity="center"
-            android:paddingLeft="20dp"
-            android:textColor="#000"
-            android:textColorHint="#0C0C00" />
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:visibility="gone"
+            android:layout_marginHorizontal="16dp">
+            <ImageView
+                android:id="@+id/btn_search"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_gravity="center_vertical"
+                android:src="@drawable/ic_btn_search"
+                android:layout_height="wrap_content"/>
+            <EditText
+                android:id="@+id/edt_search"
+                android:layout_width="0dp"
+                android:layout_weight="9"
+                android:hint="Tìm kiếm"
+                android:textSize="16sp"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/list_subject"

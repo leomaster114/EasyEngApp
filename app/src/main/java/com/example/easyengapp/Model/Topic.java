@@ -1,34 +1,49 @@
 package com.example.easyengapp.Model;
 
 public class Topic {
-    private int topicId;
-    private String topicName;
+    private String _id;
+    private int id;
+    private String name_topic;
 
     public Topic() {
     }
 
-    public void setTopicId(int topicId) {
-        this.topicId = topicId;
+    public Topic(String _id, String name_topic, int id) {
+        this._id = _id;
+        this.id = id;
+        this.name_topic = name_topic;
     }
 
-    public void setTopicName(String topicName) {
-        this.topicName = topicName;
+    public String get_id() {
+        return _id;
     }
 
-    public Topic(int topicId, String topicName) {
-        this.topicId = topicId;
-        this.topicName = topicName;
+    public int getId() {
+        return id;
     }
 
-    public Topic(String topicName) {
-        this.topicName = topicName;
+    public String getName_topic() {
+        return name_topic;
     }
 
-    public int getTopicId() {
-        return this.topicId;
+    public void set_id(String _id) {
+        this._id = _id;
     }
 
-    public String getTopicName() {
-        return this.topicName;
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setName_topic(String name_topic) {
+        this.name_topic = name_topic;
+    }
+
+    @Override
+    public String toString() {
+        return "Topic{" +
+                "_id='" + _id + '\'' +
+                ", id=" + id +
+                ", name_topic='" + name_topic + '\'' +
+                '}';
     }
 }

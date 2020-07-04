@@ -1,7 +1,16 @@
 package com.example.easyengapp.Retrofit;
 
+import com.example.easyengapp.Model.GetResultResponse;
+import com.example.easyengapp.Model.LevelByIdResponse;
+import com.example.easyengapp.Model.LevelResponse;
 import com.example.easyengapp.Model.LoginResponse;
 import com.example.easyengapp.Model.RegisterResponse;
+import com.example.easyengapp.Model.ResetPasswordResponse;
+import com.example.easyengapp.Model.Result;
+import com.example.easyengapp.Model.SaveResultResponse;
+import com.example.easyengapp.Model.Topic;
+import com.example.easyengapp.Model.TopicByIdResponse;
+import com.example.easyengapp.Model.TopicResponse;
 import com.example.easyengapp.Model.UpdateAvatarResponse;
 import com.example.easyengapp.Model.UpdateUserResponse;
 import com.example.easyengapp.Model.User;
@@ -21,6 +30,7 @@ import retrofit2.http.POST;
 import retrofit2.http.PUT;
 import retrofit2.http.Part;
 import retrofit2.http.Path;
+import retrofit2.http.Query;
 
 public interface api {
     @GET("users")
@@ -50,6 +60,32 @@ public interface api {
     @POST("upload-single-image-s3/{id}")
     Call<UpdateAvatarResponse> updateAvatar(
             @Path("id") String id,
-            @Part MultipartBody.Part image
+            @Part MultipartBody.Part image);
+    @GET("topic/get-all-topics")
+    Call<TopicResponse> getAllTopic();
+
+
+    @GET("topic/get-topic-by-id")
+    Call<TopicByIdResponse> getTopicById(
+            @Query("id") int id);
+
+    @POST("result/create")
+    Call<SaveResultResponse> createResult(@Body Result result);
+    @GET("result/get-all-result-by-user")
+    Call<GetResultResponse> getAllResultByUser(@Query("user_id") String user_id);
+    @GET("result/get-result-by-user-and-topic")
+    Call<GetResultResponse> getResultByUserTopic(
+            @Query("user_id") String user_id,
+            @Query("topic_id") String topic_id
     );
+    @GET("level/get-all-levels")
+    Call<LevelResponse> getAllLevel();
+    @GET("level/get-level-by-id")
+    Call<LevelByIdResponse> getLevelById(@Query("id") int id);
+    @POST("user/forget-pasword")
+    @FormUrlEncoded
+    Call<ResetPasswordResponse> resetPassword(
+            @Field("email") String email
+    );
+
 }

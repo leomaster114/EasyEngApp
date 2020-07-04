@@ -17,7 +17,7 @@
             android:layout_height="match_parent">
             <EditText
                 android:id="@+id/edt_username"
-                android:hint="@string/hint_email_login"
+                android:hint="Tài khoản của bạn?"
                 android:gravity="center"
                 android:textSize="16sp"
                 android:layout_width="match_parent"

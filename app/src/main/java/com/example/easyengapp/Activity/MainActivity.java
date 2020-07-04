@@ -3,11 +3,15 @@ package com.example.easyengapp.Activity;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
@@ -18,6 +22,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -26,9 +31,20 @@ import com.example.easyengapp.Database.TranferDatabase;
 import com.example.easyengapp.Fragment.DictionaryFragment;
 import com.example.easyengapp.Fragment.PracticeFragment;
 import com.example.easyengapp.Fragment.ProfileFragment;
+import com.example.easyengapp.Model.GetResultResponse;
+import com.example.easyengapp.Model.Result;
+import com.example.easyengapp.Model.Topic;
+import com.example.easyengapp.Model.TopicByIdResponse;
 import com.example.easyengapp.R;
+import com.example.easyengapp.Retrofit.RetrofitClient;
 import com.example.easyengapp.storage.SharePrefManager;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -37,12 +53,12 @@ public class MainActivity extends AppCompatActivity {
     private TranferDatabase tranferDatabase;
     private MyDatabase database;
     private String TAG = getClass().getSimpleName();
+    int numberlevelPassed;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         BottomNavigationView bottomNav = findViewById(R.id.bottom_navigation);
         bottomNav.setOnNavigationItemSelectedListener(navigationItemSelectedListener);
         getSupportFragmentManager().beginTransaction().replace(R.id.frame_container, new PracticeFragment()).commit();
@@ -50,6 +66,7 @@ public class MainActivity extends AppCompatActivity {
         prefManager = SharePrefManager.getInstance(this);
         isFirstTime = prefManager.getFistTime();
         database = new MyDatabase(this);
+        Toast.makeText(this, "Connect internet: " + checkInternet(), Toast.LENGTH_SHORT).show();
         Log.d("Main", "onCreate: " + (database == null));
         initDatabase();
 
@@ -83,10 +100,10 @@ public class MainActivity extends AppCompatActivity {
                         case R.id.navigation_home:
                             selectedFragment = new PracticeFragment();
                             break;
-                        case R.id.navigation_favorite:
+                        case R.id.navigation_dictionary:
                             selectedFragment = new DictionaryFragment();
                             break;
-                        case R.id.navigation_notifications:
+                        case R.id.navigation_profile:
                             selectedFragment = new ProfileFragment();
                             break;
                     }
@@ -105,6 +122,9 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
+            case R.id.app_search:
+                Intent intent = new Intent(MainActivity.this,SearchActivity.class);
+                startActivity(intent);
             case R.id.App_info:
                 Toast.makeText(MainActivity.this, "Thông tin ứng dụng", Toast.LENGTH_LONG).show();
                 break;
@@ -193,15 +213,15 @@ public class MainActivity extends AppCompatActivity {
         builder.setView(dialogView);
         final AlertDialog dialog = builder.create();
         dialog.setCancelable(true);
-        TextView tv_topicName = dialogView.findViewById(R.id.tv_topicname);
+        final TextView tv_topicName = dialogView.findViewById(R.id.tv_topicname);
         TextView tv_passRate = dialogView.findViewById(R.id.tv_pass_rate);
         Button btn_dang1 = dialogView.findViewById(R.id.btn_dang1);
         Button btn_dang2 = dialogView.findViewById(R.id.btn_dang2);
         Button btn_dang3 = dialogView.findViewById(R.id.btn_dang3);
         TextView txt_ketqua = dialogView.findViewById(R.id.tv_ketqua);
-        tv_topicName.setText(database.getTopicById(id).getTopicName());
-        tv_passRate.setText("0/3");
-
+        Topic tp = database.getTopicById(id);
+        tv_topicName.setText(tp.getName_topic());
+        getLevelPassed(id, tv_passRate);
         final int topicId = id;
         btn_dang1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -228,5 +248,44 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         dialog.show();
+    }
+
+    public void getLevelPassed(int id_topic, final TextView textView) {
+        String user_id = SharePrefManager.getInstance(this).getUser().getId();
+        numberlevelPassed = 0;
+        String topic_id = database.getTopicById(id_topic).get_id();
+        Log.d(TAG, "getResult: topic_id = " + topic_id);
+        Call<GetResultResponse> call = RetrofitClient.getInstance().getApi().getResultByUserTopic(user_id, topic_id);
+        call.enqueue(new Callback<GetResultResponse>() {
+            @Override
+            public void onResponse(Call<GetResultResponse> call, Response<GetResultResponse> response) {
+                List<Result> results = response.body().getResults();// list result for 1 user and 1 topic
+                for (Result result : results) {
+                    if (result.getPass()) numberlevelPassed++;
+                }
+                if (numberlevelPassed > 0) textView.setText("" + numberlevelPassed + "/3");
+            }
+
+            @Override
+            public void onFailure(Call<GetResultResponse> call, Throwable t) {
+                Log.d(TAG, "onFailure: " + t.getMessage());
+            }
+        });
+    }
+    public boolean checkInternet() {
+        boolean connected = false;
+        ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        if (connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_MOBILE).getState() == NetworkInfo.State.CONNECTED ||
+                connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI).getState() == NetworkInfo.State.CONNECTED) {
+            connected = true;
+        } else
+            connected = false;
+        return connected;
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        ActivityCompat.finishAffinity(MainActivity.this);
     }
 }

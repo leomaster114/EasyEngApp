@@ -7,8 +7,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.speech.RecognizerIntent;
+import android.speech.tts.TextToSpeech;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,15 +24,23 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.easyengapp.Database.MyDatabase;
+import com.example.easyengapp.Model.Result;
+import com.example.easyengapp.Model.SaveResultResponse;
 import com.example.easyengapp.Model.Sentence;
 import com.example.easyengapp.R;
+import com.example.easyengapp.Retrofit.RetrofitClient;
+import com.example.easyengapp.storage.SharePrefManager;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Locale;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 public class Practice2Activity extends AppCompatActivity implements View.OnClickListener {
-    ImageView img_micro;
+    ImageView img_micro, img_spell;
     ImageButton img_btn_cancel;
     ProgressBar progressBar;
     TextView tv_read_sen, tv_notify, tv_read_answer;
@@ -40,6 +50,9 @@ public class Practice2Activity extends AppCompatActivity implements View.OnClick
     private int answered = 0, correctanswer = 0;
     private ArrayList<Sentence> arrSentence;//mang cau trong bai test
     private int idTopic,index;
+    TextToSpeech textToSpeech;
+    boolean pass;
+    MediaPlayer sound_correct,sound_incorrect;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,10 +63,23 @@ public class Practice2Activity extends AppCompatActivity implements View.OnClick
         img_btn_cancel.setOnClickListener(this);
         img_btn_cancel.setOnClickListener(this);
         img_micro.setOnClickListener(this);
+        img_spell.setOnClickListener(this);
+        sound_correct = MediaPlayer.create(this, R.raw.correct);
+        sound_incorrect = MediaPlayer.create(this, R.raw.incorrect);
         load(index);
+        textToSpeech  = new TextToSpeech(this, new TextToSpeech.OnInitListener() {
+            @Override
+            public void onInit(int status) {
+                if (status != TextToSpeech.ERROR) {
+                    textToSpeech.setLanguage(Locale.US);
+                    textToSpeech.setSpeechRate((float) 0.8);
+                }
+            }
+        });
     }
 
     private void initAll() {
+        img_spell = findViewById(R.id.imgv_spell);
         img_micro = findViewById(R.id.img_micro);
         img_btn_cancel = findViewById(R.id.btn_cancel);
         progressBar = findViewById(R.id.progress);
@@ -64,6 +90,7 @@ public class Practice2Activity extends AppCompatActivity implements View.OnClick
         btn_continue =findViewById(R.id.btn_continue);
         ani_add = AnimationUtils.loadAnimation(this, R.anim.view_zoom_out);
         ani_remove = AnimationUtils.loadAnimation(this, R.anim.view_zoom_in);
+        pass = false;
         //
         Intent intent = getIntent();
         idTopic = intent.getIntExtra("IdTopic", -1);
@@ -101,12 +128,14 @@ public class Practice2Activity extends AppCompatActivity implements View.OnClick
                     answered+=1;
                     if (checkCorrect()) {
                         correctanswer+=1;
+                        sound_correct.start();
                         tv_notify.setText("Đáp án đúng");
                         tv_notify.setBackgroundColor(Color.GREEN);
                         btn_continue.setBackgroundColor(Color.GREEN);
                         showButton();
-                        // tang progessbar
                     } else {
+                        sound_incorrect.start();
+
                         tv_notify.setText("Đáp án sai");
                         showButton();
                     }
@@ -119,9 +148,15 @@ public class Practice2Activity extends AppCompatActivity implements View.OnClick
             case R.id.img_micro:
                 getInputSpeech();
                 break;
+            case R.id.imgv_spell:
+                speak(arrSentence.get(index).getContent());
+                break;
+
         }
     }
-
+    public void speak(String sentences){
+        textToSpeech.speak(sentences, TextToSpeech.QUEUE_FLUSH, null);
+    }
     private void showButton() {
         tv_notify.setVisibility(View.VISIBLE);
         tv_notify.startAnimation(ani_add);
@@ -148,13 +183,38 @@ public class Practice2Activity extends AppCompatActivity implements View.OnClick
         TextView txt_ketqua = dialogView.findViewById(R.id.tv_ketqua);
         txtTotal.setText("Tổng số câu: 10");
         txtTotal_correct.setText("Số câu đúng: "+correctanswer);
-        if(correctanswer>=8) txt_ketqua.setText("Chúc mừng bạn đã vượt qua mức 2");
-        else txt_ketqua.setText("Rất tiếc bạn chưa vượt qua mức 2");
+        if(correctanswer>=8){
+            txt_ketqua.setText("Chúc mừng bạn đã vượt qua mức 2");
+            pass = true;
+        }
+        else {
+            txt_ketqua.setText("Rất tiếc bạn chưa vượt qua mức 2");
+            pass = false;
+        }
         btn_ok.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                dialog.dismiss();
-                finish();
+                Result result = new Result();
+                result.setLevel_id("5ef56717b0aeb41110c27930");
+                result.setTopic_id(database.getTopicById(idTopic).get_id());
+                result.setUser_id(SharePrefManager.getInstance(Practice2Activity.this).getUser().getId());
+                result.setPoint(correctanswer);
+
+                result.setPass(pass);
+                Call<SaveResultResponse> call = RetrofitClient.getInstance().getApi().createResult(result);
+                call.enqueue(new Callback<SaveResultResponse>() {
+                    @Override
+                    public void onResponse(Call<SaveResultResponse> call, Response<SaveResultResponse> response) {
+                        dialog.dismiss();
+                        finish();
+                    }
+
+                    @Override
+                    public void onFailure(Call<SaveResultResponse> call, Throwable t) {
+                        Toast.makeText(Practice2Activity.this,"Save result: "+t.getMessage(),Toast.LENGTH_SHORT).show();
+                    }
+                });
+
             }
         });
         dialog.show();

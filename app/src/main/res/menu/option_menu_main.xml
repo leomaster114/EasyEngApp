@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item android:id="@+id/app_search"
+        android:title="Tìm kiếm"
+        android:icon="@drawable/ic_btn_search"
+        app:showAsAction="always"/>
     <item
         android:id="@+id/App_info"
         android:title="@string/app_info" />

@@ -5,9 +5,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.widget.ContentLoadingProgressBar;
 
 import android.app.Dialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.util.Log;
 import android.util.TypedValue;
@@ -27,9 +29,14 @@ import android.widget.Toast;
 import com.example.easyengapp.Database.MyDatabase;
 import com.example.easyengapp.DialogWord;
 import com.example.easyengapp.FullScreenDialog;
+import com.example.easyengapp.Model.LevelByIdResponse;
+import com.example.easyengapp.Model.Result;
+import com.example.easyengapp.Model.SaveResultResponse;
 import com.example.easyengapp.Model.Sentence;
 import com.example.easyengapp.Model.Word;
 import com.example.easyengapp.R;
+import com.example.easyengapp.Retrofit.RetrofitClient;
+import com.example.easyengapp.storage.SharePrefManager;
 import com.nex3z.flowlayout.FlowLayout;
 
 import java.util.ArrayList;
@@ -38,8 +45,13 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 public class PracticeActivity extends AppCompatActivity implements View.OnClickListener {
-    private static final String TAG = "PracticeFrag";
+    private static final String TAG = "PracticeActivity";
+    private Context context;
     private FlowLayout layout_fill, layout_choose;
     private LinearLayout layout_result;
     private Button btn_next, btn_check;
@@ -57,6 +69,7 @@ public class PracticeActivity extends AppCompatActivity implements View.OnClickL
     private TextView tv_mean, tv_result, tv_notify;
     private ImageButton btn_cancel;
     ProgressBar progressBar;
+    MediaPlayer sound_correct,sound_incorrect;
     private MyDatabase database;
     private int answered = 0, correctanswer = 0;
     @Override
@@ -73,6 +86,9 @@ public class PracticeActivity extends AppCompatActivity implements View.OnClickL
         tv_result = findViewById(R.id.tv_result);
         btn_cancel = findViewById(R.id.btn_cancel);
         progressBar = findViewById(R.id.progress);
+        pass = false;
+        sound_correct = MediaPlayer.create(this, R.raw.correct);
+        sound_incorrect = MediaPlayer.create(this, R.raw.incorrect);
         //
         btn_next.setOnClickListener(this);
         btn_check.setOnClickListener(this);
@@ -92,7 +108,7 @@ public class PracticeActivity extends AppCompatActivity implements View.OnClickL
     }
 
     private void load(int index) {
-        pass = false;
+
         sentence = arrSentence.get(index);
         content = sentence.getContent();
         arrContent = content.split(" ");
@@ -178,13 +194,16 @@ public class PracticeActivity extends AppCompatActivity implements View.OnClickL
          }else if (v.getId() == R.id.btn_check) {
                 answered+=1;
             if (checkCorrect()) {
-                pass = true;
+//                pass = true;
                 correctanswer+=1;
+                sound_correct.start();
                 tv_notify.setText("Đáp án đúng");
                 tv_notify.setBackgroundColor(Color.GREEN);
                 btn_next.setBackgroundColor(Color.GREEN);
+
                 showAnswer();
             } else {
+                sound_incorrect.start();
                 tv_notify.setText("Đáp án sai");
                 showAnswer();
             }
@@ -207,7 +226,7 @@ public class PracticeActivity extends AppCompatActivity implements View.OnClickL
                     txt2.setVisibility(View.INVISIBLE);
 
                 } else {// click vao cau tra loi de tra loi lai
-                    if (!pass) {
+//                    if (!pass) {
                         TextView txt1 = findViewById(id);
                         String str = txt1.getText().toString();
                         if (!str.equals("")) {
@@ -238,7 +257,7 @@ public class PracticeActivity extends AppCompatActivity implements View.OnClickL
                             }
                         }
                     }
-                }
+//                }
             } catch (Exception e) {
                 Toast.makeText(this, "Chọn chậm thôi bạn :))", Toast.LENGTH_LONG).show();
                 load(index);
@@ -261,13 +280,40 @@ public class PracticeActivity extends AppCompatActivity implements View.OnClickL
         TextView txt_ketqua = dialogView.findViewById(R.id.tv_ketqua);
         txtTotal.setText("Tổng số câu: 10");
         txtTotal_correct.setText("Số câu đúng: "+correctanswer);
-        if(correctanswer>=8) txt_ketqua.setText("Chúc mừng bạn đã vượt qua mức 2");
-        else txt_ketqua.setText("Rất tiếc bạn chưa vượt qua mức 2");
+        if(correctanswer>=8){
+            txt_ketqua.setText("Chúc mừng bạn đã vượt qua mức 1");
+            pass = true;
+        }
+        else {
+            txt_ketqua.setText("Rất tiếc bạn chưa vượt qua mức 1");
+            pass = false;
+        }
         btn_ok.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                dialog.dismiss();
-                finish();
+                Result result = new Result();
+                result.setLevel_id("5ef56717b0aeb41110c27931");
+                result.setTopic_id(database.getTopicById(idTopic).get_id());
+                result.setUser_id(SharePrefManager.getInstance(PracticeActivity.this).getUser().getId());
+                result.setPoint(correctanswer);
+                result.setPass(pass);
+                Call<SaveResultResponse> call = RetrofitClient.getInstance().getApi().createResult(result);
+                call.enqueue(new Callback<SaveResultResponse>() {
+                    @Override
+                    public void onResponse(Call<SaveResultResponse> call, Response<SaveResultResponse> response) {
+                        dialog.dismiss();
+                        finish();
+                        Intent intent = new Intent(PracticeActivity.this,MainActivity.class);
+                        startActivity(intent);
+                        Log.d(TAG, "onResponse: create result"+response.body().getMsg());
+                    }
+
+                    @Override
+                    public void onFailure(Call<SaveResultResponse> call, Throwable t) {
+                        Toast.makeText(PracticeActivity.this,"Save result: "+t.getMessage(),Toast.LENGTH_SHORT).show();
+                    }
+                });
+
             }
         });
         dialog.show();

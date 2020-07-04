@@ -17,6 +17,7 @@ public class MyDatabase extends SQLiteOpenHelper {
     private static String DbName = "English.db";
 
     private String TOPIC_TABLE = "topic_table";
+    private String _ID = "_id";
     private String TOPIC_ID = "topicId";
     private String TOPIC_NAME = "topic_name";
 
@@ -47,8 +48,10 @@ public class MyDatabase extends SQLiteOpenHelper {
         String createWordTable = String.format("CREATE TABLE %s (%s INTEGER PRIMARY KEY AUTOINCREMENT,"
                         + " %s text, %s text, %s text,%s text,%s INTEGER, FOREIGN KEY (%s) REFERENCES %s(%s))"
                 , WORD_TABLE, WORD_ID, Word, Phonetic, SimpleMeaning, Value, TopicId, TopicId, TOPIC_TABLE, TopicId);
-        String createTopicTable = String.format("CREATE TABLE %s (%s INTEGER PRIMARY KEY AUTOINCREMENT,"
-                + " %s text)", TOPIC_TABLE, TOPIC_ID, TOPIC_NAME);
+//        String createTopicTable = String.format("CREATE TABLE %s (%s INTEGER PRIMARY KEY AUTOINCREMENT,"
+//                + " %s text)", TOPIC_TABLE, TOPIC_ID, TOPIC_NAME);
+        String createTopicTable = String.format("CREATE TABLE %s (%s TEXT PRIMARY KEY,"
+                + " %s text, %s integer)", TOPIC_TABLE,_ID, TOPIC_ID, TOPIC_NAME);
         String createSentenceTable = String.format("CREATE TABLE %s (%s INTEGER PRIMARY KEY AUTOINCREMENT, %s text, %s text,%s INTEGER, FOREIGN KEY (%s) REFERENCES %s(%s))",
                 SENTENCE_TABLE, SENTENCE_ID, SENTENCE_CONTENT, SENTENCE_MEAN, TopicId, TopicId, TOPIC_TABLE, TopicId);
         db.execSQL(createTopicTable);
@@ -67,7 +70,13 @@ public class MyDatabase extends SQLiteOpenHelper {
         db.execSQL(drop_topic_table);
         onCreate(db);
     }
-
+    public void deleteAllWord(){
+        SQLiteDatabase db = getWritableDatabase();
+        String query = String.format("Delete from %s", WORD_TABLE+" where word_id > 0");
+        String query2 = String.format("Delete from %s", SENTENCE_TABLE+" where sentence_id > 0");
+        db.execSQL(query);
+        db.execSQL(query2);
+    }
     // thêm từ vào các chủ để
     public void addWord(Word word) {
         SQLiteDatabase db = getWritableDatabase();
@@ -76,7 +85,7 @@ public class MyDatabase extends SQLiteOpenHelper {
         values.put(Phonetic, word.getPhonetic());
         values.put(SimpleMeaning, word.getMean());
         values.put(Value, word.getValue());
-        values.put(TopicId, word.getTopic().getTopicId());
+        values.put(TopicId, word.getTopic().getId());
         db.insert(WORD_TABLE, null, values);
         db.close();
     }
@@ -99,8 +108,8 @@ public class MyDatabase extends SQLiteOpenHelper {
                 word.setMean(cursor.getString(3));
                 word.setValue(cursor.getString(4));
                 //
-                topic.setTopicId(cursor.getInt(5));
-                topic.setTopicName(cursor.getString(6));
+                topic.setId(cursor.getInt(5));
+                topic.setName_topic(cursor.getString(6));
                 //
                 word.setTopic(topic);
                 words.add(word);
@@ -128,8 +137,8 @@ public class MyDatabase extends SQLiteOpenHelper {
                 word.setMean(cursor.getString(3));
                 word.setValue(cursor.getString(4));
                 //
-                topic.setTopicId(cursor.getInt(5));
-                topic.setTopicName(cursor.getString(6));
+                topic.setId(cursor.getInt(5));
+                topic.setName_topic(cursor.getString(6));
                 //
                 word.setTopic(topic);
                 words.add(word);
@@ -156,8 +165,8 @@ public class MyDatabase extends SQLiteOpenHelper {
                 word.setMean(cursor.getString(3));
                 word.setValue(cursor.getString(4));
                 //
-                topic.setTopicId(cursor.getInt(5));
-                topic.setTopicName(cursor.getString(6));
+                topic.setId(cursor.getInt(5));
+                topic.setName_topic(cursor.getString(6));
                 //
                 word.setTopic(topic);
                 arr.add(word);
@@ -167,13 +176,41 @@ public class MyDatabase extends SQLiteOpenHelper {
         db.close();
         return arr;
     }
-
+    public ArrayList<Word> getWordByKey(String key) {
+        ArrayList<Word> arr = new ArrayList<>();
+        SQLiteDatabase db = getReadableDatabase();
+        String query = "select w.word_id,w.word, w.phonetic, w.mean, w.value, tp.topicId, tp.topic_name from word_table as w, topic_table as tp " +
+                "where w.word LIKE '%"+key+"%'"+" and w.topicId = tp.topicId";
+        Cursor cursor = db.rawQuery(query, null);
+        Log.d(TAG, "getWordByKey: "+cursor.getCount());
+        if (cursor.moveToFirst()) {
+            do {
+                Word word = new Word();
+                Topic topic = new Topic();
+                word.setWord_id(cursor.getInt(0));
+                word.setWord(cursor.getString(1));
+                word.setPhonetic(cursor.getString(2));
+                word.setMean(cursor.getString(3));
+                word.setValue(cursor.getString(4));
+                //
+                topic.setId(cursor.getInt(5));
+                topic.setName_topic(cursor.getString(6));
+                //
+                word.setTopic(topic);
+                arr.add(word);
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
+        db.close();
+        return arr;
+    }
     // thêm chủ đề
     public void addTopic(Topic topic) {
         SQLiteDatabase db = getWritableDatabase();
         ContentValues contentValues = new ContentValues();
-//        contentValues.put(TOPIC_ID, topic.getTopicId());
-        contentValues.put(TOPIC_NAME, topic.getTopicName());
+        contentValues.put(_ID,topic.get_id());
+        contentValues.put(TOPIC_ID, topic.getId());
+        contentValues.put(TOPIC_NAME, topic.getName_topic());
         db.insert(TOPIC_TABLE, null, contentValues);
         db.close();
     }
@@ -181,7 +218,8 @@ public class MyDatabase extends SQLiteOpenHelper {
     public ArrayList<Topic> getAllTopic(){
         ArrayList<Topic> arrTopic = new ArrayList<>();
         SQLiteDatabase db = getReadableDatabase();
-        String query = "select tp.topicId, tp.topic_name from topic_table as tp ";
+        String query = "select tp._id, tp.topicId, tp.topic_name from topic_table as tp ";
+//        String query = "select  tp.topicId, tp.topic_name from topic_table as tp ";
         Cursor cursor = db.rawQuery(query, null);
         Log.d(TAG, "getAllTopic: cursor count "+cursor.getCount());
         Log.d(TAG, "getAllTopic: movetofirst"+(cursor.moveToFirst() == true));
@@ -189,8 +227,9 @@ public class MyDatabase extends SQLiteOpenHelper {
         if (cursor.moveToFirst()) {
             do {
                 Topic topic = new Topic();
-                topic.setTopicId(cursor.getInt(0));
-                topic.setTopicName(cursor.getString(1));
+                topic.set_id(cursor.getString(0));
+                topic.setId(cursor.getInt(1));
+                topic.setName_topic(cursor.getString(2));
                 arrTopic.add(topic);
             } while (cursor.moveToNext());
         }
@@ -201,7 +240,7 @@ public class MyDatabase extends SQLiteOpenHelper {
     //get topic by id
     public Topic getTopicById(int id){
         SQLiteDatabase db = getReadableDatabase();
-        String query = "select tp.topicId, tp.topic_name from topic_table as tp where tp.topicId = ?";
+        String query = "select tp._id, tp.topicId, tp.topic_name from topic_table as tp where tp.topicId = ?";
         Cursor cursor = db.rawQuery(query, new String[]{String.valueOf(id)});
         Log.d(TAG, "getTopicById:"+id+" cursor count "+cursor.getCount());
         Log.d(TAG, "getTopicById: movetofirst"+(cursor.moveToFirst() == true));
@@ -209,8 +248,9 @@ public class MyDatabase extends SQLiteOpenHelper {
         if (cursor.moveToFirst()) {
             do {
                 Topic topic = new Topic();
-                topic.setTopicId(cursor.getInt(0));
-                topic.setTopicName(cursor.getString(1));
+                topic.set_id(cursor.getString(0));
+                topic.setId(cursor.getInt(1));
+                topic.setName_topic(cursor.getString(2));
                 return topic;
             } while (cursor.moveToNext());
         }
@@ -226,8 +266,8 @@ public class MyDatabase extends SQLiteOpenHelper {
         if (cursor.moveToFirst()) {
             do {
                 Topic topic = new Topic();
-                topic.setTopicId(cursor.getInt(0));
-                topic.setTopicName(cursor.getString(1));
+                topic.setId(cursor.getInt(0));
+                topic.setName_topic(cursor.getString(1));
                 return topic;
             } while (cursor.moveToNext());
         }
@@ -242,7 +282,7 @@ public class MyDatabase extends SQLiteOpenHelper {
         ContentValues values = new ContentValues();
         values.put(SENTENCE_CONTENT, sentence.getContent());
         values.put(SENTENCE_MEAN, sentence.getMean());
-        values.put(TopicId, sentence.getTopic().getTopicId());
+        values.put(TopicId, sentence.getTopic().getId());
         db.insert(SENTENCE_TABLE, null, values);
         db.close();
     }
@@ -263,8 +303,8 @@ public class MyDatabase extends SQLiteOpenHelper {
                 sentence.setContent(cursor.getString(1));
                 sentence.setMean(cursor.getString(2));
                 //
-                topic.setTopicId(cursor.getInt(3));
-                topic.setTopicName(cursor.getString(4));
+                topic.setId(cursor.getInt(3));
+                topic.setName_topic(cursor.getString(4));
                 //
                 sentence.setTopic(topic);
                 arrsentences.add(sentence);
@@ -291,8 +331,8 @@ public class MyDatabase extends SQLiteOpenHelper {
                 s.setMean(cursor.getString(2));
 
                 //
-                topic.setTopicId(cursor.getInt(3));
-                topic.setTopicName(cursor.getString(4));
+                topic.setId(cursor.getInt(3));
+                topic.setName_topic(cursor.getString(4));
                 //
                 s.setTopic(topic);
                arrSentence.add(s);
@@ -302,4 +342,6 @@ public class MyDatabase extends SQLiteOpenHelper {
         db.close();
         return arrSentence;
     }
+
+
 }

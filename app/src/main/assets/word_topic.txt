@@ -240,104 +240,104 @@
 11 -Winter 
 11 -Year 
 12 -Attractive 
-12-Beautiful 
-12-Body shape 
-12-Charming 
-12-Cute 
-12-Fat 
-12-Fit 
-12-Handsome 
-12-Height 
-12-Arm 
-12-Back 
-12-Belly 
-12-Blood 
-12-Body 
-12-Bone 
-12-Brain 
+12 -Beautiful 
+12 -Body shape 
+12 -Charming 
+12 -Cute 
+12 -Fat 
+12 -Fit 
+12 -Handsome 
+12 -Height 
+12 -Arm 
+12 -Back 
+12 -Belly 
+12 -Blood 
+12 -Body 
+12 -Bone 
+12 -Brain 
 13 -Blouse 
-13-Belt 
-13-Boot 
-13-Coat 
-13-Dress 
-13-Glasses 
-13-Glove 
-13-Handbag 
-13-Hat 
-13-Jacket 
-13-Jeans 
-13-Pants 
-13-Pyjama 
-13-Sandal
-13-Scarf 
-13-Shirt 
-13-Shoes 
-13-Short 
-13-Skirt 
+13 -Belt 
+13 -Boot 
+13 -Coat 
+13 -Dress 
+13 -Glasses 
+13 -Glove 
+13 -Handbag 
+13 -Hat 
+13 -Jacket 
+13 -Jeans 
+13 -Pants 
+13 -Pyjama 
+13 -Sandal
+13 -Scarf 
+13 -Shirt 
+13 -Shoes 
+13 -Short 
+13 -Skirt 
 14 -Gateway 
-14-Packet 
-14-Source Code 
-14-Memory 
-14-Port 
-14-Microprocessor 
-14-Storage 
-14-Hardware 
-14-Configuration 
-14-Protocol 
-14-Technical 
-14-database
-15-Actor 
-15-Architect 
-15-Baker 
-15-Businessman 
-15-Chef 
-15-Cleaner 
-15-Dentist 
-15-Designer
-15-Engineer 
-15-Farmer 
-15-Fireman 
-15-Fisherman 
-15-Florist 
-15-Gardener 
-16-Absolute veto  
-16-Abuse 
-16-Ambassador  
-16-Anarchism  
-16-Bourgeoisie 
-16-Budget 
-16-Campaign 
-16-Candidate 
-16-Caution 
-16-Censor 
-16-Centralism 
-15-Citizen
-17- Art
-17-Artist 
-17-Artwork 
-17-Audience 
-17-Author 
-17-Band 
-17-Brush 
-17-Camera 
-17-Canvas 
-17-Choir 
-17-Clap 
-17-Collection 
-17-Composer 
-17-Concert 
-17-Creative 
-17-Culture 
-18- Allergy 
-18-Ambulance 
-18-Contagious 
-18-Bandage 
-18-Fever 
-18-Nurse 
-18-Surgeon
-18-Sick 
-18-Medicine 
-18-Thermometer 
-18-Toothache 
-18-Headache 
-18-Measles
+14 -Packet 
+14 -Source Code 
+14 -Memory 
+14 -Port 
+14 -Microprocessor 
+14 -Storage 
+14 -Hardware 
+14 -Configuration 
+14 -Protocol 
+14 -Technical 
+14 -database
+15 -Actor 
+15 -Architect 
+15 -Baker 
+15 -Businessman 
+15 -Chef 
+15 -Cleaner 
+15 -Dentist 
+15 -Designer
+15 -Engineer 
+15 -Farmer 
+15 -Fireman 
+15 -Fisherman 
+15 -Florist 
+15 -Gardener 
+16 -Absolute veto  
+16 -Abuse 
+16 -Ambassador  
+16 -Anarchism  
+16 -Bourgeoisie 
+16 -Budget 
+16 -Campaign 
+16 -Candidate 
+16 -Caution 
+16 -Censor 
+16 -Centralism 
+15 -Citizen
+17 -Art
+17 -Artist 
+17 -Artwork 
+17 -Audience 
+17 -Author 
+17 -Band 
+17 -Brush 
+17 -Camera 
+17 -Canvas 
+17 -Choir 
+17 -Clap 
+17 -Collection 
+17 -Composer 
+17 -Concert 
+17 -Creative 
+17 -Culture 
+18 -Allergy 
+18 -Ambulance 
+18 -Contagious 
+18 -Bandage 
+18 -Fever 
+18 -Nurse 
+18 -Surgeon
+18 -Sick 
+18 -Medicine 
+18 -Thermometer 
+18 -Toothache 
+18 -Headache 
+18 -Measles
